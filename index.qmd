@@ -1,0 +1,225 @@
+---
+pagetitle: "H4Sci Website"
+page-layout: custom
+
+section-divs: true
+toc: false
+editor: source
+format: 
+    html:
+        css: index.css
+---
+<!-- insert background image-->
+
+<ul class="list">
+  <li class="item">
+  <div class="slide">
+  <div class="title">Hacking4Science</div>
+  <div class="sub-text">A PhD course which helps (aspiring) researchers use programming skills and practices to improve their research</div>
+  </div>
+  </li>
+  <li class="item">
+  <div class="slide">
+  <div class="title">Code as Communication</div>
+  <div class="sub-text">As a Mentality aims to teach students best-practices to collaborate on and maintain code </div>
+  </div>
+  </li>
+  <li class="item">
+  <div class="slide">
+  <div class="title">Community</div>
+  <div class="sub-text">As a fundamental part of the learning</div>
+  </div>
+  </li>
+
+</ul>
+
+
+
+
+::: {.content-block}
+
+
+
+### Schedule
+
+::: {.features} 
+::: {.feature}
+
+### What?
+This course, based on the flipped classroom concept, introduces students to the fundamentals of programming for research. It provides the necessary tools to enhance their research. Students collaborate in groups on their own projects.
+
+:::
+
+::: {.feature}
+
+### When?
+The course follows the scrum technique, which includes shorter sessions followed by longer periods of individual work. It is structured as a 4-part block course. For more details, see the [Schedule]().
+
+:::
+
+::: {.feature}
+
+### Where?
+To ensure flexibility and accessibility, this course is conducted entirely online, allowing students to participate from anywhere.
+
+:::
+
+::: 
+
+### Course Content
+
+
+::: {.features}
+::: {.feature}
+
+### Slides
+The [Slides](https://github.com/h4sci/h4sci-course) for the course are hosted on GitHub as Quarto markdown files. Your first task could be to clone and render them locally to get started.
+
+:::
+
+::: {.feature}
+
+### Book
+The course content is based on the [Research Software Engineering Book](https://rse-book.github.io). It covers all important topics with short examples and case studies to enhance your learning.
+
+:::
+
+
+
+::: {.feature}
+
+### Community
+Join the [Hacking4Science chat]() community to connect with current and past students. Share knowledge, get feedback, and stay in touch with peers to enhance your learning experience.
+
+:::
+:::
+
+
+<!-- Feature Block End  -->
+:::
+
+
+
+
+<!-- Content Block End  -->
+:::
+
+
+<!-- infinite loop of student testimonials: https://codepen.io/studiojvla/pen/qVbQqW -->
+
+
+::: {.alt-background}
+
+::: {.content-block}
+
+
+::: {.grid}
+
+::: {.g-col-4}
+
+
+
+
+:::
+
+::: {.g-col-4}
+
+#### ETH Zurich
+
+[Research Software Engineering and Economic Data (RSEED)](https://rseed.ch)
+
+[KOF Lab](https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed.html)
+
+[Join our newsletter!](https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed/subscription.html)
+
+
+#### Contact Us
+
+Minna Heim
+
+heim [ at ] kof.ethz.ch
+
+
+:::
+
+
+::: {.g-col-4}
+
+#### GitHub
+
+[Open Time Series GitHub organization](https://github.com/opentsi)
+
+[opentimeseries R package development](https://github.com/opentsi/opentimeseries)) 
+
+:::
+
+
+
+<!-- Grid End  -->
+:::
+
+
+:::
+
+:::
+
+
+
+
+
+
+<!--::: {.content-block}
+::: {.grid}
+::: {.g-col-7}
+## Human-Friendly, Machine-Readable.
+
+The Open Time Series Initiative derives scientific-grade time series from data publications for the broader public. 
+In addition to data, we share an inclusive, battle-tested framework for ingestion of publicly available data and vintage management.
+
+::: {.hero-buttons}
+[GitHub Organization](https://github.com/opentsi){.btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"}
+:::
+
+:::
+
+::: {.g-col-5}
+
+:::
+
+:::
+
+:::
+-->
+
+
+<!--
+::: {.button-background}
+
+::: {.content-block}
+
+
+::: {.grid}
+
+::: {.g-col-4}
+
+:::
+
+
+::: {.g-col-4}
+
+[Follow our journey](https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed/subscription.html){.btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
+
+<br />
+<br />
+
+:::
+
+::: {.g-col-4}
+
+:::
+
+:::
+
+:::
+
+::: -->

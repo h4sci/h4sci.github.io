@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "The Hacking4Science Course "
+  search: false
+  page-navigation: false
+  navbar:
+    collapse-below: lg
+    background: light
+    pinned: false
+    left:
+    - href: carousel.qmd
+    #    text: Home
+     # - about.qmd
+    tools:
+      - icon: github
+        href: https://github.com/opentsi
+
+  
+
+format:
+  html:
+    theme: lightly
+    css: index.css
+    code-copy: true
+    code-overflow: wrap
+
+
+
