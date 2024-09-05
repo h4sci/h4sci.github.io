@@ -1,0 +1,31 @@
+
+---
+title: carousel shitty
+format:
+    html:
+        css: index.css
+---
+<!-- carousel start-->
+
+<ul class="list">
+  <li class="item">
+  <div class="slide">
+  <div class="title">Hacking4Science</div>
+  <div class="sub-text">A PhD course which helps (aspiring) researchers use programming skills and practices to improve their research</div>
+  </div>
+  </li>
+  <li class="item">
+  <div class="slide">
+  <div class="title">Code as Communication</div>
+  <div class="sub-text">As a Mentality aims to teach students best-practices to collaborate on and maintain code </div>
+  </div>
+  </li>
+  <li class="item">
+  <div class="slide">
+  <div class="title">Community</div>
+  <div class="sub-text">As a fundamental part of the learning</div>
+  </div>
+  </li>
+
+</ul>
+<!-- carousel end-->

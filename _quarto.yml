@@ -10,7 +10,7 @@ website:
     background: light
     pinned: false
     left:
-    - href: carousel.qmd
+      - href: carousel.qmd
     #    text: Home
      # - about.qmd
     tools:

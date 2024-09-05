@@ -9,40 +9,29 @@ format:
     html:
         css: index.css
 ---
-<!-- insert background image-->
 
-<ul class="list">
-  <li class="item">
-  <div class="slide">
-  <div class="title">Hacking4Science</div>
-  <div class="sub-text">A PhD course which helps (aspiring) researchers use programming skills and practices to improve their research</div>
-  </div>
-  </li>
-  <li class="item">
-  <div class="slide">
-  <div class="title">Code as Communication</div>
-  <div class="sub-text">As a Mentality aims to teach students best-practices to collaborate on and maintain code </div>
-  </div>
-  </li>
-  <li class="item">
-  <div class="slide">
-  <div class="title">Community</div>
-  <div class="sub-text">As a fundamental part of the learning</div>
-  </div>
-  </li>
-
-</ul>
+<!-- TODO: compare entire content with old website & notes
+TODO: add infinite loop of student testimonials
+TODO: link to matthias' personal details? aka about the lecturer -->
 
 
-
+<!-- course info grid start-->
 
 ::: {.content-block}
 
-
-
 ### Schedule
+<div style="margin-top: 20px;"></div>
 
-::: {.features} 
+
+|           | Day       | Time              | Location                       |
+|-----------|-----------|-------------------|--------------------------------|
+| Block 1  | Thu: 26.09 <br> Fri: 27.09  | 1:45 pm - 3:00 pm | [zoom]()     |
+| Block 2  | Thu: 24.10 <br> Fri: 25.10  | 1:45 pm - 3:00 pm | [zoom]()     |
+| Block 3  | Thu: 21.11 <br> Fri: 22.11  | 1:45 pm - 3:00 pm | [zoom]()     |
+| Block 4  | Thu: 05.12 <br> Fri: 06.12  | 1:45 pm - 3:00 pm | [zoom]()     |
+
+
+<!-- ::: {.features} 
 ::: {.feature}
 
 ### What?
@@ -64,7 +53,7 @@ To ensure flexibility and accessibility, this course is conducted entirely onlin
 
 :::
 
-::: 
+:::  -->
 
 ### Course Content
 
@@ -94,20 +83,42 @@ Join the [Hacking4Science chat]() community to connect with current and past stu
 :::
 :::
 
+:::
 
-<!-- Feature Block End  -->
+<!-- course info grid end -->
+
+
+<!-- matt info start -->
+::: {.button-background}
+::: {.content-block}
+
+### About the Lecturer
+<div style="margin-top: 20px;"></div>
+
+::: {.grid}
+
+::: {.g-col-4}
+
+![](images/wizardry.jpg){width=80%}
+:::
+
+::: {.g-col-4}
+
+Matthias is a software developer and Co-PI in research projects at ETH Zurich, Switzerland. He contributes  to open source software and the R Project for Statistical Computing in particular. At work, he designs solutions for state of the art data processing, management and dissemination.
+:::
 :::
 
 
-
-
-<!-- Content Block End  -->
 :::
+<br />
+:::
+
+<!-- matt info end -->
 
 
 <!-- infinite loop of student testimonials: https://codepen.io/studiojvla/pen/qVbQqW -->
 
-
+<!-- footer start -->
 ::: {.alt-background}
 
 ::: {.content-block}
@@ -124,13 +135,13 @@ Join the [Hacking4Science chat]() community to connect with current and past stu
 
 ::: {.g-col-4}
 
-#### ETH Zurich
+<!---#### ETH Zurich
 
 [Research Software Engineering and Economic Data (RSEED)](https://rseed.ch)
 
 [KOF Lab](https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed.html)
 
-[Join our newsletter!](https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed/subscription.html)
+[Join our newsletter!](https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed/subscription.html)-->
 
 
 #### Contact Us
@@ -147,15 +158,12 @@ heim [ at ] kof.ethz.ch
 
 #### GitHub
 
-[Open Time Series GitHub organization](https://github.com/opentsi)
-
-[opentimeseries R package development](https://github.com/opentsi/opentimeseries)) 
+[Hacking4Science on Github](https://github.com/h4sci)
 
 :::
 
 
 
-<!-- Grid End  -->
 :::
 
 
@@ -163,7 +171,7 @@ heim [ at ] kof.ethz.ch
 
 :::
 
-
+<!-- footer end -->
 
 
 
