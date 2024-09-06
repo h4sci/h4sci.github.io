@@ -1,0 +1,30 @@
+---
+import Container from "./Container.astro"
+import Frame from "./Frame.astro"
+import { cn } from "@lib/utils"
+import {button} from "@tailus/themer-button"
+---
+
+<div class="relative">
+  <div
+        aria-hidden
+        class="opacity-0 dark:opacity-35 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/3 pointer-events-none"
+      />
+  <Container>
+    <div class="relative">
+      <div class="mt-6 m-auto space-y-6 md:w-8/12 lg:w-7/12">
+        <h2 class="text-center text-4xl font-bold text-gray-800 dark:text-white md:text-5xl">Get Started now</h2>
+        <p class="text-center text-lg text-gray-600 dark:text-gray-300">
+          Be part of millions people around the world using tailus in modern UIS.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
+                    <Frame>
+                      <a href="https://beta.tailus.io/demo" class={cn(button.primary.lg, "relative z-[1]")}>
+                        Start Building
+                      </a>
+                    </Frame>
+                </div>
+      </div>
+    </div>
+  </Container>
+</div>

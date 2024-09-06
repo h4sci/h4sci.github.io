@@ -1,0 +1,75 @@
+---
+import BrandLogo from "./BrandLogo.astro";
+import Container from "./Container.astro";
+import { button, ghostButton, outlinedButton } from "@tailus/themer-button"
+import {cn} from "@lib/utils"
+import Frame from "./Frame.astro";
+
+const links = [
+    {
+        to: "/#home",
+        label: "Product",
+    },
+    {
+        to: "/#features",
+        label: "Features",
+    },
+    {
+        to: "/#solution",
+        label: "Solution",
+    },
+    {
+        to: "/#reviews",
+        label: "Reviews",
+    },
+];
+---
+<header>
+    <nav class="absolute z-50 w-full lg:bg-transparent dark:lg:bg-transparent">
+        <Container>
+            <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8">
+                <div class="relative z-20 flex w-full items-center justify-between md:px-0 lg:w-max">
+                    <BrandLogo />
+
+                    <div class="relative flex max-h-10 items-center lg:hidden">
+                        <button aria-label="humburger" id="hamburger" class="relative -mr-6 p-6">
+                            <div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
+                            <div aria-hidden="true" id="line2" class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
+                        </button>
+                    </div>
+                </div>
+                <div id="navLayer" aria-hidden="true" class="fixed inset-0 z-10 h-screen w-screen origin-bottom scale-y-0 bg-white/70 backdrop-blur-2xl transition duration-500 dark:bg-gray-900/70 lg:hidden"></div>
+                <div id="navlinks" class="hidden flex-wrap lg:flex gap-6 items-center w-full lg:w-fit">
+                    <div class="lg:fixed lg:inset-x-0 lg:size-fit lg:m-auto">
+                        <Frame>
+                            <div class="relative w-full text-gray-600 dark:text-gray-300">
+                                <ul class="flex flex-col gap-6 tracking-wide lg:flex-row lg:gap-0 lg:text-sm">
+                                    {
+                                        links.map((link) => (
+                                            <li>
+                                                <a href={link.to} class="px-2 py-1 hover:bg-gray-950/5 hover:text-gray-950 rounded-[--btn-border-radius] block transition dark:hover:text-white md:px-4 dark:hover:bg-white/5">
+                                                    <span>{link.label}</span>
+                                                </a>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </Frame>
+                    </div>
+                    <div class="w-full my-6 border-t dark:border-[--ui-dark-border-color] pt-6 lg:mt-0 flex gap-2 lg:my-0 lg:border-none lg:pt-0">
+                        <a href="/login" class={cn(ghostButton.gray.sm, "hidden lg:flex")}>
+                            Sign In
+                        </a>
+                        <a href="/login" class={cn(outlinedButton.gray.sm, "w-full justify-center md:w-fit lg:hidden")}>
+                            Sign In
+                        </a>
+                        <a href="/register" class={cn(button.neutral.sm, "w-full md:w-fit")}>
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </nav>
+</header>

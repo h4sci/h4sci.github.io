@@ -1,0 +1,64 @@
+---
+import BrandIcon from "./BrandIcon.astro";
+import Container from "./Container.astro";
+
+type Link = {
+  title: string;
+  url: string;
+};
+
+const internalLinks = [
+  { title: "Home", url: "#" },
+  { title: "About", url: "#" },
+  { title: "Guide", url: "#" },
+  { title: "Blocks", url: "#" },
+  { title: "Contact", url: "#" },
+  { title: "Terms of Use", url: "#" },
+];
+
+const externalLinks = [
+  { title: "Github", url: "#" },
+  { title: "Twitter", url: "#" },
+  { title: "YouTube", url: "#" },
+  { title: "Facebook", url: "#" },
+  { title: "Medium", url: "#" },
+  { title: "Pintrest", url: "#" },
+  { title: "Patreon", url: "#" },
+  { title: "Instagram", url: "#" },
+];
+---
+
+<footer class="pb-6 sm:pb-12 lg:pb-20">
+    <Container>
+      <div class="p-6 rounded-[--card-border-radius] bg-gray-50 mx-auto max-w-sm dark:bg-[--card-dark-bg] sm:p-12">
+          <div class="flex">
+            <BrandIcon />
+          </div>
+          <div class="mt-12 mb-6 flex justify-between gap-4">
+              <div>
+                <span class="text-gray-950 dark:text-white font-medium">Links</span>
+                <ul class="mt-6 space-y-2">
+                  {internalLinks.map((link: Link) => (
+                    <li>
+                      <a href={link.url} class="text-gray-600 dark:text-gray-400 transition hover:text-primary-600 dark:hover:text-primary-400">{link.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <span class="block w-px bg-gray-200 dark:bg-gray-800"></span>
+              <div>
+                <span class="text-gray-950 dark:text-white font-medium">Community</span>
+                <ul class="mt-6 space-y-2">
+                  {externalLinks.map((link: Link) => (
+                    <li>
+                      <a href={link.url} class="text-gray-600 dark:text-gray-400 transition hover:text-primary-600 dark:hover:text-primary-400">{link.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+          </div>
+
+          <div class="-mb-2 text-sm flex flex-wrap gap-1 overflow-hidden font-medium text-gray-700 dark:text-gray-300">Designed by Tailus in<div class="flex items-start justify-center gap-2 text-center font-semibold text-gray-950 dark:text-white sm:gap-1"><div class="block"><div class="block pb-2">DR Congo</div><div class="-mt-5 grow overflow-hidden"><svg aria-hidden="true" class="w-16" height="22" viewBox="0 0 283 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.24715 19.3744C72.4051 10.3594 228.122 -4.71194 281.724 7.12332" stroke="url(#paint0_linear_pl)" stroke-width="4"></path><defs><linearGradient id="paint0_linear_pl" x1="282" y1="5.49999" x2="40" y2="13" gradientUnits="userSpaceOnUse"><stop stop-color="#facc15"></stop><stop offset="1" stop-color="#a855f7"></stop></linearGradient></defs></svg></div></div></div></div>
+      </div>
+    </Container>
+</footer>
