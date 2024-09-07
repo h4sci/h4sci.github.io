@@ -1,46 +1,37 @@
 ---
-import BrandLogo from "./BrandLogo.astro";
 import Container from "./Container.astro";
-import { button, ghostButton, outlinedButton } from "@tailus/themer-button"
-import {cn} from "@lib/utils"
-import Frame from "./Frame.astro";
-
-const links = [
-    {
-        to: "/#home",
-        label: "Product",
-    },
-    {
-        to: "/#features",
-        label: "Features",
-    },
-    {
-        to: "/#solution",
-        label: "Solution",
-    },
-    {
-        to: "/#reviews",
-        label: "Reviews",
-    },
-];
 ---
-<header>
-    <nav class="absolute z-50 w-full bg-neutral-400 dark:lg:bg-transparent">
+<header>    
+    <!-- styling start - underline when hovering - currently only underlined when clicking, not when hovering?-->
+    <style>
+        a:hover {
+  text-decoration: underline;
+}
+    </style>
+    <!-- styling end -->
+    <nav class="absolute z-50 w-full bg-gray-900 dark:lg:bg-transparent">
         <Container>
-            <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8">
-                <div class="relative z-20 flex w-full items-center justify-between md:px-0 lg:w-max">
-                    <div class="mt-12 grid sm:grid-cols-2 gap-4 sm:gap-12 max-w-3xl w-full mx-auto">
+                    <!-- 2 grid start -->
+                    <div class="mt-12 grid sm:grid-cols-3 gap-4 sm:gap-12 max-w-3xl w-full mx-auto">
                         <div>
-                            <h2 class="text-gray-950 dark:text-white text-2xl font-semibold">Research Software Engineering </h2>
                         </div>
                         <div class="space-y-3">
-                            <p class="text-gray-600 dark:text-gray-400">Natus ad ipsum pariatur autem, <span class="text-gray-950 dark:text-white font-medium">fugit laborum in atque</span> amet obcaecati? Nisi minima aspernatur, quidem nulla cupiditate nam consequatur eligendi magni adipisci.</p>
-                            <p class="text-gray-600 dark:text-gray-400">Nisi minima aspernatur, quidem nulla cupiditate nam consequatur eligendi magni adipisci.</p>
+                            <h2 class="text-gray-100 dark:text-white text-xl font-semibold">Github Organisation </h2>
+                            <p class="text-gray-400 dark:text-gray-400"> <a href="https://github.com/h4sci/h4sci-course"> H4Sci Course</a></p>
+                            <h2 class="text-gray-100 dark:text-white text-xl font-semibold">Contact Us </h2>
+                            <p class="text-gray-400 dark:text-gray-400"> Minna Heim</p>
+                            <p class="text-gray-400 dark:text-gray-400">  <span class="text-gray-400 dark:text-white font-medium">heim [ at ] kof.ethz.ch</span></p>
+                        </div>
+                        <div class="space-y-3">
+                            <h2 class="text-gray-100 dark:text-white text-xl font-semibold">RSEED at KOF Lab @ ETHZ</h2>
+                            <p class="text-gray-400 dark:text-gray-400"> <a href="https://kof.ethz.ch/en/the-institute/kof-divisions/research-division-kof-lab/rseed.html"> Research Software Engineering and Economic Data (RSEED)</a></p>
+                            <p class="text-gray-400 dark:text-gray-400"> <a href="https://rseed.ch/h4sci.html">H4Sci Course Announcement</a></p>
                         </div>
                     </div>
-                    <!-- TODO: align like text above -->
-                </div>
-            </div>
+                    <!-- 2 grid end -->
+                     <br></br>
+                    <!-- is there a better way to add padding here? its the same top and bottom coincidentally, but should be done soemwhere else?-->
+
         </Container>
     </nav>
 </header>
