@@ -3,6 +3,13 @@ import Container from "./Container.astro";
 ---
 
 <section>
+    <!-- styling start - underline when hovering - currently only underlined when clicking, not when hovering?-->
+    <style>
+        a:hover {
+    text-decoration: underline;
+}
+    </style>
+    <!-- styling end -->
     <Container>
         <div class="p-[--card-padding] overflow-hidden lg:aspect-video flex rounded-[--card-border-radius] bg-gray-100 dark:bg-[--card-dark-bg]">
             <div class="max-w-xs w-full h-fit m-auto space-y-12">
@@ -17,7 +24,7 @@ import Container from "./Container.astro";
             <div class="space-y-3">
                 <p class="text-gray-600 dark:text-gray-400">The book strives to give a big-picture overview and an understanding of the opportunities of programming as an approach to analytics and statistics. <i>Research Software Engineering</i> argues that the ability to write a program leverages field speicifc expertise and fosters interdisciplinary collaboration as source code continues to becoma an important communication channel.</p>
                 <p class="text-gray-600 dark:text-gray-400">The book incorporates feedback from the Hacking for Science courses and aims to be a rel companion and reference for participants of the courses.</p>
-                <p class="text-gray-600 dark:text-gray-400"><a href="">Read the Online Version</a> | <a href="">Order the Book </a></p>
+                <p class="text-gray-600 dark:text-gray-400"><a href="https://rse-book.github.io" target="_blank" >Read the Online Version</a> | <a href="https://www.amazon.com/Research-Software-Engineering-Ecosystem-Chapman/dp/1032261277" target="_blank">Order the Book </a></p>
             </div>
         </div>
         <!-- 2 grid end -->
