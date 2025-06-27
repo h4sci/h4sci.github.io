@@ -1,17 +1,19 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
+import BaseHead from "../components/BaseHead.astro";
 import AppFooter from "../components/AppFooter.astro";
+// import Navbar from "@components/navbar/navbar.astro";
 import AppHeader from "../components/AppHeader.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-    <head>
-       <BaseHead />
-    </head>
-    <body class="overflow-x-hidden bg-white dark:bg-gray-950">
-        <AppHeader />
-        <slot />
-        <AppFooter />
-    </body>
+  <head>
+    <BaseHead />
+  </head>
+  <body class="overflow-x-hidden bg-white dark:bg-gray-950">
+    <!-- <Navbar /> -->
+    <AppHeader />
+    <slot />
+    <AppFooter />
+  </body>
 </html>
