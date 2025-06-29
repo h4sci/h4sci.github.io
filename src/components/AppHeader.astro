@@ -3,6 +3,7 @@ import BrandLogo from "./BrandLogo.astro";
 import Container from "./Container.astro";
 import { Icon } from "astro-icon/components";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const links = [
   {
@@ -21,14 +22,14 @@ const links = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <BrandLogo />
-        <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800" />
+        <div class="flex items-center gap-2 lg:hidden">
+          <MenuIcon class="w-4 h-4 text-gray-800 dark:text-gray-200" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
           {
-            links.map((item, index) => (
+            links.map((item) => (
               <>
                 {
                   <li>
@@ -48,8 +49,12 @@ const links = [
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
+        <ThemeToggle />
         <a href="https://github.com/h4sci"
-          ><Icon class="text-black" name="simple-icons:github" /></a
+          ><Icon
+            class="text-black dark:text-white"
+            name="simple-icons:github"
+          /></a
         >
       </div>
     </div>
