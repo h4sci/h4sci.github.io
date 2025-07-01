@@ -44,15 +44,41 @@ const eventLink =
                     </div>
                     <div class="text-left">
                       <!-- TODO: insert interactive/online/ logo -->
-                      <img src="interaction.svg" width="26"></img>
+                        <img
+                          src="interaction-light.svg"
+                          width="26"
+                          alt="interaction logo"
+                          class="block dark:hidden"
+                        />
+                        <!-- Dark mode logo -->
+                        <img
+                          src="interaction-dark.svg"
+                          width="26"
+                          alt="interaction logo"
+                          class="hidden dark:block"
+                        />
+                      <!-- <img src="interaction.svg" width="26"></img> -->
                         <h2 class="my-2 text-base font-semibold text-gray-700 dark:text-white">Highly Interactive</h2>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">PhD-level course,</p>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">taught online at ETH Zurich.</p>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">Open to guests.</p>
                     </div>
                     <div class="text-left">
-                      <!-- teamwork svg button -->
-                      <img src="teamwork.svg" width="26"></img>
+                      <!-- teamwork svg with theme switching -->
+                      <!-- Light mode logo -->
+                      <img
+                        src="teamwork-light.svg"
+                        width="26"
+                        alt="teamwork icon"
+                        class="block dark:hidden"
+                      />
+                      <!-- Dark mode logo -->
+                      <img
+                        src="teamwork-dark.svg"
+                        width="26"
+                        alt="teamwork icon"
+                        class="hidden dark:block"
+                      />
                         <h2 class="my-2 text-base font-semibold text-gray-700 dark:text-white">Teamwork</h2>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">Group projects from</p>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">dashboards to OSS </p>
