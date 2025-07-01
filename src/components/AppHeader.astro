@@ -17,7 +17,7 @@ const links = [
 ];
 ---
 
-<Container>
+<!-- <Container>
   <header class="flex flex-col lg:flex-row justify-between items-center my-5">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
@@ -59,4 +59,52 @@ const links = [
       </div>
     </div>
   </header>
-</Container>
+</Container> -->
+<header>
+  <nav class="absolute z-50 w-full lg:bg-transparent dark:lg:bg-transparent">
+    <Container>
+      <div
+        class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8"
+      >
+        <div
+          class="relative z-20 flex w-full items-center justify-between md:px-0 lg:w-max"
+        >
+          <BrandLogo />
+
+          <div class="relative flex max-h-10 items-center lg:hidden">
+            <button
+              aria-label="humburger"
+              id="hamburger"
+              class="relative -mr-6 p-6"
+            >
+              <div
+                aria-hidden="true"
+                id="line"
+                class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"
+              >
+              </div>
+              <div
+                aria-hidden="true"
+                id="line2"
+                class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"
+              >
+              </div>
+            </button>
+          </div>
+        </div>
+        <!-- theme toggle & github link -->
+        <div>
+          <div class="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
+            <a href="https://github.com/h4sci"
+              ><Icon
+                class="text-black dark:text-white"
+                name="simple-icons:github"
+              /></a
+            >
+          </div>
+        </div>
+      </div>
+    </Container>
+  </nav>
+</header>
