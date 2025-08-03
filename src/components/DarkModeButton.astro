@@ -1,0 +1,120 @@
+---
+// Dark mode toggle button component
+// alternative class for toggle button -> simpler:   class="text-black dark:text-white"
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="p-2 text-gray-500 dark:text-gray-400 dark:hover:text-white"
+  aria-label="Toggle dark mode"
+>
+  <!-- importing the icons from public/ -->
+  <img
+    id="theme-toggle-light-icon"
+    src="/toggle-light.svg"
+    alt="Light mode"
+    class="w-5 h-5 dark:hidden"
+  />
+  <img
+    id="theme-toggle-dark-icon"
+    src="/toggle-dark.svg"
+    alt="Dark mode"
+    class="w-5 h-5 hidden dark:block"
+  />
+</button>
+
+<script>
+  // Theme toggle functionality
+  const themeToggle = document.getElementById("theme-toggle");
+  const darkIcon = document.getElementById("theme-toggle-dark-icon");
+  const lightIcon = document.getElementById("theme-toggle-light-icon");
+
+  // Check for saved theme preference or default to system preference
+  const getTheme = () => {
+    if (typeof localStorage !== "undefined") {
+      return localStorage.getItem("theme");
+    }
+    return null;
+  };
+
+  const setTheme = (theme: string) => {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("theme", theme);
+    }
+  };
+
+  // Set initial theme
+  const initTheme = () => {
+    const savedTheme = getTheme();
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.classList.add("dark");
+      lightIcon?.classList.add("hidden");
+      darkIcon?.classList.remove("hidden");
+    } else {
+      document.documentElement.classList.remove("dark");
+      lightIcon?.classList.remove("hidden");
+      darkIcon?.classList.add("hidden");
+    }
+  };
+
+  // Toggle theme
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      setTheme("light");
+      lightIcon?.classList.remove("hidden");
+      darkIcon?.classList.add("hidden");
+    } else {
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+      lightIcon?.classList.add("hidden");
+      darkIcon?.classList.remove("hidden");
+    }
+  };
+
+  // Initialize theme on page load
+  initTheme();
+
+  // Add click event listener
+  themeToggle?.addEventListener("click", toggleTheme);
+</script>
+
+<!-- <script>
+  // TODO: add also toggle back to light theme, here only toggle to dark
+  // Dark mode toggle functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("theme-toggle");
+
+    // set vars for the saved themes and system preferences
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    // TODO: set Theme, set initial theme?
+
+    // compare themes & preferences to set to dark
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.classList.add("dark");
+    }
+
+    // toggle also changes to dark
+    themeToggle?.addEventListener("click", function () {
+      document.documentElement.classList.toggle("dark");
+
+      // Save preference
+      if (document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    });
+  });
+</script> -->

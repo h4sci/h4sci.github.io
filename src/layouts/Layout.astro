@@ -8,6 +8,17 @@ import AppHeader from "../components/AppHeader.astro";
 <html lang="en" class="scroll-smooth">
     <head>
        <BaseHead />
+        <script is:inline>
+        // Necessary for view transitions
+        document.addEventListener('astro:after-swap', () => {
+            if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ) {
+            document.documentElement.classList.add('dark');
+            }
+        });
+        </script>
     </head>
     <body class="overflow-x-hidden bg-white dark:bg-gray-950">
         <AppHeader />

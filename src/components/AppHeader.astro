@@ -1,42 +1,37 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
 import Container from "./Container.astro";
+import DarkModeButton from "./DarkModeButton.astro";
 
 const links = [
-    {
-        to: "/#home",
-        label: "Product",
-    },
-    {
-        to: "/#features",
-        label: "Features",
-    },
-    {
-        to: "/#solution",
-        label: "Solution",
-    },
-    {
-        to: "/#reviews",
-        label: "Reviews",
-    },
+  {
+    to: "/#home",
+    label: "Product",
+  },
+  {
+    to: "/#features",
+    label: "Features",
+  },
+  {
+    to: "/#solution",
+    label: "Solution",
+  },
+  {
+    to: "/#reviews",
+    label: "Reviews",
+  },
 ];
 ---
-<header>
-    <nav class="absolute z-50 w-full lg:bg-transparent dark:lg:bg-transparent">
-        <Container>
-            <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8">
-                <div class="relative z-20 flex w-full items-center justify-between md:px-0 lg:w-max">
-                    <BrandLogo />
 
-                    <div class="relative flex max-h-10 items-center lg:hidden">
-                        <button aria-label="hamburger" id="hamburger" class="relative -mr-6 p-6">
-                            <div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
-                            <div aria-hidden="true" id="line2" class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"></div>
-                        </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </Container>
-    </nav>
+<header>
+  <nav class="absolute z-50 w-full lg:bg-transparent dark:lg:bg-transparent">
+    <Container>
+        <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8">
+        <div class="relative z-20 flex w-full items-center justify-between md:px-0">
+          <BrandLogo />
+          <DarkModeButton />
+        </div>
+      </div>
+    </Container>
+  </nav>
 </header>
