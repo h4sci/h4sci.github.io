@@ -4,10 +4,11 @@ import Container from "./Container.astro"
 import {button} from "@tailus/themer-button"
 ---
 
-<section class="relative overflow-hidden scroll-mt-24" id="home">  
+<section class="relative overflow-hidden scroll-mt-24" id="home"> 
+   <!-- TODO: previously opacity-15 and dark:opacity-25 -> personally i don't think this looks good with the navbar hence i removed them  -->
     <div
         aria-hidden
-        class=" opacity-15 dark:opacity-25 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        class=" opacity-0 dark:opacity-0 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
       />
     <Container>
         <div class="relative pt-32 sm:pt-44 ml-auto">
