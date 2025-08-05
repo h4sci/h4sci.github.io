@@ -2,10 +2,10 @@
 import BrandLogo from "./BrandLogo.astro";
 import Container from "./Container.astro";
 import DarkModeButton from "./DarkModeButton.astro";
-import { Astronav, MenuItems, MenuIcon} from "astro-navbar";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
-{
+  {
     title: "Course Materials",
     path: "/h4sci-course-materials",
   },
@@ -14,8 +14,8 @@ const menuitems = [
   //   path: "/talk",
   // },
 ];
-
 ---
+
 <Container>
   <header class="flex flex-col lg:flex-row justify-between items-center my-5">
     <Astronav>
@@ -34,9 +34,9 @@ const menuitems = [
                   <li>
                     <a
                       href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 dark:text-gray-400 hover:text-gray-900">
+                      class="flex lg:px-3 py-2 items-center text-gray-600 dark:text-gray-400 hover:text-gray-900"
+                    >
                       <span> {item.title}</span>
-
                     </a>
                   </li>
                 }
@@ -44,11 +44,12 @@ const menuitems = [
             ))
           }
         </ul>
-    </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <DarkModeButton />
+      </MenuItems>
+      <div>
+        <div class="hidden lg:flex items-center gap-4">
+          <DarkModeButton />
+        </div>
       </div>
-    </div>
+    </Astronav>
   </header>
 </Container>
