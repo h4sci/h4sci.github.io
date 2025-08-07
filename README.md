@@ -15,3 +15,5 @@ Hacking for Science is a course project by Dr. Matthias Bannert.
 
 
 website built with [astro](https://astro.build)
+
+project uses [bun](https://bun.com), to run app use `bun run start`
