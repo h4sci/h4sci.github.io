@@ -2,6 +2,14 @@
 import { cn } from "@lib/utils"
 import Container from "./Container.astro"
 import {button} from "@tailus/themer-button"
+import DynamicBadge from "./dynamicBadge.astro";
+
+const eventDate = "HS2025";
+const announce = "ETHZ Course";
+const badgeCta = "register now!";
+const eventLink =
+  "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=192666&semkez=2025W&ansicht=LEHRVERANSTALTUNGEN&lang=de";
+
 ---
 
 <section class="relative overflow-hidden scroll-mt-24" id="home"> 
@@ -12,7 +20,15 @@ import {button} from "@tailus/themer-button"
       />
     <Container>
         <div class="relative pt-32 sm:pt-44 ml-auto">
-            <div class="lg:w-2/3 text-center mx-auto">
+            <div class="lg:w-2/3 text-center mx-auto relative">
+                <div class="absolute -top-40 -right-24 hidden md:block">
+                    <DynamicBadge
+                      eventDate={eventDate}
+                      announce={announce}
+                      badgeCta={badgeCta}
+                      eventLink={eventLink}
+                    />
+                </div>
                 <h1 class="text-gray-900 dark:text-white font-bold text-4xl sm:text-5xl md:text-6xl">A Guide to the Open Source Ecosystem </h1>
                 <p class="max-w-xl mx-auto mt-8 text-gray-700 dark:text-gray-300">
                    Hacking for Science is a course project created to <b>teach programming with data</b> to non-computer science <b>researchers</b> and <b>business analysts</b>.
