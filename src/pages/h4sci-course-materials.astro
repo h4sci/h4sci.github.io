@@ -1,0 +1,69 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import Layout from '../layouts/Layout.astro';
+import CourseScheduleSection from '@components/CourseScheduleSection.astro';
+import BookSection from '@components/BookSection.astro';
+import Container from 'components/Container.astro';
+---
+<Layout title="H4Sci">
+	<main class="space-y-16 sm:space-y-28 lg:space-y-32 pb-40 overflow-clip">
+	<Container >
+	<h1 class="text-gray-900 dark:text-white font-bold text-4xl sm:text-5xl md:text-6xl mt-16 mb-4">Course Materials</h1>
+	<h2 class="text-gray-600 dark:text-white font-bold text-2xl sm:text-3xl md:text-3xl  mb-4">Prepare. Practice. Discuss. Apply.</h2>
+	<p class="text-gray-600 dark:text-gray-400 pb-4">
+	Everyone has a different starting point, we all learn differently - particularly in a course where students from many fields come together.
+    Hacking for Science aims to provide comfortable entry points to a wide variety of people who are interested in programming with data.
+	</p>
+
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+		<!-- Left column: 3 cards stacked -->
+		<div class="space-y-6">
+			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+				<p class="text-gray-600 dark:text-gray-400 mb-6">
+			    We have a highly <b>interactive online lecture</b> and <b>Matrix Chat channel</b> which want to coach as much as possible rather than teach.
+			    Bring your questions and real world problems to class!
+				</p>
+				<a href="Sign up">Sign up for the 25/26 Course at ETH Zurich.</a>
+			</div>
+
+			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+				<p class="text-gray-600 dark:text-gray-400 mb-6">
+				Information is ubiquitous.
+				Time to practice, commitment and endurance is limited and has opportunity costs.
+				Hacking for Science offers a series of digestable videos.
+			    Our videos motivate, explain concepts and walk you through processes.
+			    Step by step and in applied fashion.
+				</p>
+				Explore our videos below | <a href="Sign up">H4Sci YouTube Channel</a>
+			</div>
+
+			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+				<p class="text-gray-600 dark:text-gray-400 mb-6">
+				The ability to gut check not only your raw knowledge but your level of comfort is important when developing a more tech assisted personal workflow.
+				Hacking for Science provides some easy quizzes to find out whether you are rather to take the most out of the next discussion or lecture.
+				</p>
+				<a href="Sign up">Explore the quizzes! </a> | (stay tuned for new quizzes coming up.)
+			</div>
+		</div>
+
+		<!-- Right column: Book card -->
+		<div>
+			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg h-full">
+				<div class="max-w-48 w-full h-fit mx-auto mb-4">
+	                <img src="/rse_book2.jpeg" alt="Research Software Enginnering - A Guide to the Open Source Ecosystem" loading="lazy" width="2481" height="1626" class="rounded-lg">
+	            </div>
+				<p class="text-gray-600 dark:text-gray-400 mb-6">
+				Given the abundance of information, it is often hard to extract the right information and a handable amount of that information.
+				The book project Research Software Engineering - A Guide to the Open Source Ecosystem suggests a carefully curated dose of software engineering
+			    for non-computer scientist data enthusiasts to learn.
+			    The book is available in a free online version as well as a printed book from CRC/Chapman & Hall.
+				</p>
+				<a href="Sign up">Read Online on GitHub </a> | <a href="Sign up">Order at Amazon</a>
+			</div>
+		</div>
+	</div>
+
+	<h2 class="text-gray-600 dark:text-white font-bold text-2xl sm:text-3xl md:text-3xl  mb-4">Video Series: A Guide to Learning Git</h2>
+	</Container>
+	</main>
+</Layout>
