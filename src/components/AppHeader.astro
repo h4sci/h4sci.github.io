@@ -1,43 +1,42 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
 import Container from "./Container.astro";
-import { Icon } from "astro-icon/components";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
-import ThemeToggle from "../components/ThemeToggle.astro";
+import DarkModeButton from "./DarkModeButton.astro";
+import { Astronav, MenuItems, MenuIcon} from "astro-navbar";
 
-const links = [
-  {
-    to: "/git-module",
-    label: "Git Module",
+const menuitems = [
+{
+    title: "Videos",
+    path: "/h4sci-videos",
   },
   {
-    to: "/guest-lecture",
-    label: "Guest Lecture",
+    title: "Guest Lecture",
+    path: "/talk",
   },
 ];
----
 
-<!-- <Container>
+---
+<Container>
   <header class="flex flex-col lg:flex-row justify-between items-center my-5">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <BrandLogo />
-        <div class="flex items-center gap-2 lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800 dark:text-gray-200" />
+        <div class="block lg:hidden">
+          <MenuIcon class="w-5 h-5 text-gray-800 dark:text-gray-400" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
           {
-            links.map((item) => (
+            menuitems.map((item, index) => (
               <>
                 {
                   <li>
                     <a
-                      href={item.to}
-                      class="flex lg:px-3 py-2 items-center text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-500 font-normal text-base tracking-wide transition-colors duration-200"
-                    >
-                      <span> {item.label}</span>
+                      href={item.path}
+                      class="flex lg:px-3 py-2 items-center text-gray-600 dark:text-gray-400 hover:text-gray-900">
+                      <span> {item.title}</span>
+
                     </a>
                   </li>
                 }
@@ -45,66 +44,11 @@ const links = [
             ))
           }
         </ul>
-      </MenuItems>
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <ThemeToggle />
-        <a href="https://github.com/h4sci"
-          ><Icon
-            class="text-black dark:text-white"
-            name="simple-icons:github"
-          /></a
-        >
+        <DarkModeButton />
       </div>
     </div>
   </header>
-</Container> -->
-<header>
-  <nav class="absolute z-50 w-full lg:bg-transparent dark:lg:bg-transparent">
-    <Container>
-      <div
-        class="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4 lg:py-8"
-      >
-        <div
-          class="relative z-20 flex w-full items-center justify-between md:px-0 lg:w-max"
-        >
-          <BrandLogo />
-
-          <div class="relative flex max-h-10 items-center lg:hidden">
-            <button
-              aria-label="humburger"
-              id="hamburger"
-              class="relative -mr-6 p-6"
-            >
-              <div
-                aria-hidden="true"
-                id="line"
-                class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"
-              >
-              </div>
-              <div
-                aria-hidden="true"
-                id="line2"
-                class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"
-              >
-              </div>
-            </button>
-          </div>
-        </div>
-        <!-- theme toggle & github link -->
-        <div>
-          <div class="hidden lg:flex items-center gap-4">
-            <ThemeToggle />
-            <a href="https://github.com/h4sci"
-              ><Icon
-                class="text-black dark:text-white"
-                name="simple-icons:github"
-              /></a
-            >
-          </div>
-        </div>
-      </div>
-    </Container>
-  </nav>
-</header>
+</Container>

@@ -2,31 +2,33 @@
 import { cn } from "@lib/utils"
 import Container from "./Container.astro"
 import {button} from "@tailus/themer-button"
-import DynamicBadge from "./DynamicBadge.astro";
+import DynamicBadge from "./dynamicBadge.astro";
 
 const eventDate = "HS2025";
-const announce = "happening again in";
+const announce = "ETHZ Course";
 const badgeCta = "register now!";
 const eventLink =
-  "https://www.vorlesungen.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=192666&semkez=2025W&ansicht=LEHRVERANSTALTUNGEN&lang=en";
+  "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=192666&semkez=2025W&ansicht=LEHRVERANSTALTUNGEN&lang=de";
+
 ---
 
-<section class="relative overflow-hidden scroll-mt-24" id="home">  
+<section class="relative overflow-hidden scroll-mt-24" id="home"> 
+   <!-- TODO: previously opacity-15 and dark:opacity-25 -> personally i don't think this looks good with the navbar hence i removed them  -->
     <div
         aria-hidden
-        class="opacity-0 dark:opacity-25 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        class=" opacity-0 dark:opacity-0 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
       />
     <Container>
         <div class="relative pt-32 sm:pt-44 ml-auto">
-            <!-- <div class="absolute top-0 right-0 hidden md:block z-20">
-              <DynamicBadge
-                eventDate={eventDate}
-                announce={announce}
-                badgeCta={badgeCta}
-                eventLink={eventLink}
-              />
-            </div> -->
-            <div class="lg:w-3/4 text-center mx-auto">
+            <div class="lg:w-2/3 text-center mx-auto relative">
+                <div class="absolute -top-40 -right-24 hidden md:block">
+                    <DynamicBadge
+                      eventDate={eventDate}
+                      announce={announce}
+                      badgeCta={badgeCta}
+                      eventLink={eventLink}
+                    />
+                </div>
                 <h1 class="text-gray-900 dark:text-white font-bold text-4xl sm:text-5xl md:text-6xl">A Guide to the Open Source Ecosystem </h1>
                 <p class="max-w-xl mx-auto mt-8 text-gray-700 dark:text-gray-300">
                    Hacking for Science is a course project created to <b>teach programming with data</b> to non-computer science <b>researchers</b> and <b>business analysts</b>.
@@ -44,41 +46,17 @@ const eventLink =
                     </div>
                     <div class="text-left">
                       <!-- TODO: insert interactive/online/ logo -->
-                        <img
-                          src="interaction-light.svg"
-                          width="26"
-                          alt="interaction logo"
-                          class="block dark:hidden"
-                        />
-                        <!-- Dark mode logo -->
-                        <img
-                          src="interaction-dark.svg"
-                          width="26"
-                          alt="interaction logo"
-                          class="hidden dark:block"
-                        />
-                      <!-- <img src="interaction.svg" width="26"></img> -->
+                      <img src="interaction-dark.svg" width="26" class="hidden dark:block"></img>
+                      <img src="interaction-light.svg" width="26" class="block dark:hidden"></img>
                         <h2 class="my-2 text-base font-semibold text-gray-700 dark:text-white">Highly Interactive</h2>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">PhD-level course,</p>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">taught online at ETH Zurich.</p>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">Open to guests.</p>
                     </div>
                     <div class="text-left">
-                      <!-- teamwork svg with theme switching -->
-                      <!-- Light mode logo -->
-                      <img
-                        src="teamwork-light.svg"
-                        width="26"
-                        alt="teamwork icon"
-                        class="block dark:hidden"
-                      />
-                      <!-- Dark mode logo -->
-                      <img
-                        src="teamwork-dark.svg"
-                        width="26"
-                        alt="teamwork icon"
-                        class="hidden dark:block"
-                      />
+                      <!-- teamwork svg button -->
+                      <img src="teamwork-dark.svg" width="26" class="hidden dark:block"></img>
+                      <img src="teamwork-light.svg" width="26" class="block dark:hidden"></img>
                         <h2 class="my-2 text-base font-semibold text-gray-700 dark:text-white">Teamwork</h2>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">Group projects from</p>
                         <p class="text-gray-600 dark:text-gray-400 text-sm">dashboards to OSS </p>
