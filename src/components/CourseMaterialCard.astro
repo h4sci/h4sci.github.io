@@ -1,9 +1,9 @@
 ---
 
 const {
-  imagePath, 
-  heading, 
-  description, 
+  imagePath,
+  heading,
+  description,
   videoLink = []
   } = Astro.props;
 ---
@@ -13,15 +13,16 @@ const {
       <img src={imagePath} loading="lazy"></img>
     </div>
     <div class="mt-6 space-y-2">
-        <h3 class="text-gray-950 dark:text-white text-lg font-medium">{heading}</h3>
-        <p class="text-gray-600 dark:text-gray-400">{description}</p>
-        {videoLink.length > 0 && (
-          videoLink.map((link,index) => (
-          <p class="text-gray-600 dark:text-gray-400 font-bold">
-              Video {index+1}: 
-              <a class="text-gray-700 dark:text-gray-500 mb-6" href={link.url}>{link.title}</a>
-            </p>
-            )) 
-          )}
+      <h3 class="text-gray-950 dark:text-white text-lg font-medium">{heading}</h3>
+      <p class="text-gray-600 dark:text-gray-400">{description}</p>
+      {videoLink.length > 0 && (
+        videoLink.map((link, index) => (
+          <p key={index} class="flex items-center space-x-2">
+            <img src="youtube.svg" width="26" class="block dark:hidden flex-shrink-0"></img>
+            <img src="youtube.svg" width="26" class="hidden dark:block flex-shrink-0"></img>
+            <a class="text-gray-400 dark:text-gray-500" href={link.url}>{link.title}</a>
+          </p>
+        ))
+      )}
     </div>
 </div>

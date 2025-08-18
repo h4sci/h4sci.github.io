@@ -8,26 +8,45 @@ import Container from "./Container.astro";
         <div class="mb-12">
             <h2 class="text-gray-600 dark:text-white font-bold text-2xl sm:text-3xl md:text-3xl  mb-4">Video Series: A Guide to Learning Git</h2>
                 <p class="text-gray-600 dark:text-gray-400 pb-4">
-                    This video series will guide you through the most basic git commands and help you <b>overcome the most frequent mistakes</b> beginners make, and how to prevent and overcome these! Since learning git is all about practice, be sure to <b>try these exercises</b>  out on your own! 
+                    Git is the de facto standard when it comes to managing source code.
+                    Almost all software development teams use git in some form or another.
+                    Yet, git is not always intuitive and to reach a level of git proficiency that
+                    makes a collaborator fit into teams requires practice.
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 pb-4">
+                    The goal of this video series is to motivate and guide the listener's training.
+                    The largest git platforms are worth billions of dollars even though large chunks
+                    of the source code they host are publicly available to anyone.
+                    The enormous amount of public git repositories does not only provide free software to
+                    the endusers and inspiration to developers - it's a lake of information for AI tools
+                    from GitHub Co-Pilot to Claude and beyond.
+
                 </p>
         </div>
         <div class="space-y-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:space-y-0 sm:gap-4">
             <CourseMaterialCard
                 imagePath = "/thumbnail-matt.png"
-                heading ="Introduction"
-                description="What is git? Why learn it? How do these videos fit in with your git journey? All these questions will be answered here"
+                heading ="Conceptual Videos"
+                description="Understand the core ideas. A good conceptual understanding makes your know-how sustainable and transferable to a broad variety of situations."
                 videoLink = {[
-                    {title: "Introduction", url: "https://h4sci.github.io"},
-                    {title: "Timeline", url: "https://h4sci.github.io"}
+                    {title: "The Potential of Your Investment", url: "https://h4sci.github.io"},
+                    {title: "Just Git. Git on a Local Computer.", url: "https://h4sci.github.io"},
+                    {title: "The CLI: Git in the Language of a 4-Year Old", url: "https://h4sci.github.io"},
+                    {title: "The Idea of Collaboration in Git", url: "https://h4sci.github.io"},
+                    {title: "The Concept of SSH Key Pairs. Secure Automation.", url: "https://h4sci.github.io"},
                 ]}
                 />
             <CourseMaterialCard
                 imagePath = "/thumbnail-screen.png"
-                heading ="Focus: Local"
-                description="Understanding how the most basic git commands work - from git init to git commit - on an intuitive, conceptual level, locally."
+                heading ="Walkthrough Videos"
+                description="Get comfortable by applying the git workflow. Our walkthroughs help you follow along step by step. All walkthroughs are accompanied by sections in the Research Software Engineerig book as well as benchmarking quizzes."
                 videoLink = {[
-                    {title: "Checkout, Add", url: "https://h4sci.github.io"},
-                    {title: "Commit", url: "https://h4sci.github.io"}
+                    {title: "Moving Around Locally", url: "https://h4sci.github.io"},
+                    {title: "Collaboration Walkthrough", url: "https://h4sci.github.io"},
+                    {title: "Resolving Merge Conflicts", url: "https://h4sci.github.io"},
+                    {title: "Contribute Via Feature Branches", url: "https://h4sci.github.io"},
+                    {title: "Pushing a Feature Branch to a Remote Repository", url: "https://h4sci.github.io"},
+                    {title: "The Process of a Pull Request (Merge Request)", url: "https://h4sci.github.io"}
                 ]}
                 />
             <CourseMaterialCard
@@ -37,36 +56,6 @@ import Container from "./Container.astro";
                 videoLink = {[
                     {title: "Conceptual", url: "https://h4sci.github.io"},
                     {title: "Practical", url: "https://h4sci.github.io"}
-                ]}
-                />
-            <CourseMaterialCard
-                imagePath = "/thumbnail-screen.png"
-                heading ="Practical Walkthrough"
-                description="Practicing the conceptual commands learned on a simple repository, learning how to stage, commit and push changes."
-                videoLink = {[
-                    {title: "Add, Commit", url: "https://h4sci.github.io"},
-                    {title: "Status, Commit", url: "https://h4sci.github.io"}
-                ]}
-                />
-             <CourseMaterialCard
-                imagePath = "/thumbnail-together.png"
-                heading ="Git Collaboration"
-                description="Understanding how collaboration on repositories works in git, working through a simple repository"
-                videoLink = {[
-                    {title: "Conceptual", url: "https://h4sci.github.io"},
-                    {title: "Practical: cloning, changing, committing", url: "https://h4sci.github.io"}
-                ]}
-                />
-             <CourseMaterialCard
-                imagePath = "/thumbnail-minna.png"
-                heading ="Conflicts & (Feature) Branches"
-                description="How do conflicts happen? How do you solve them and work in a conflict avoidant way? All these questions will be answered through these videos"
-                videoLink = {[
-                    {title: "Individual Files", url: "https://h4sci.github.io"},
-                    {title: "Same Files", url: "https://h4sci.github.io"},
-                    {title: "Branch Creation", url: "https://h4sci.github.io"},
-                    {title: "Pull Requests", url: "https://h4sci.github.io"},
-
                 ]}
                 />
             </div>
