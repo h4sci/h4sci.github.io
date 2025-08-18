@@ -1,92 +1,74 @@
 ---
-import { cn } from "@lib/utils";
+import CourseMaterialCard from "./CourseMaterialCard.astro";
 import Container from "./Container.astro";
-import {softGradientVariant as card} from "@tailus/themer-card"
 ---
 
 <section id="features" class="scroll-mt-24">
     <Container>
-        <div class="lg:w-2/3 text-left mt-24 mb-12">
-                <h1 class="text-gray-900 dark:text-white font-bold text-xl sm:text-5xl md:text-6xl">Git Lecture Material</h1>
-                <p class=" mt-8 text-gray-700 dark:text-gray-300">
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad <b>alias numquam unde pariatur voluptatem</b> non et. Unde, numquam  <b>dolor sit amet consectetur</b>reiciendis eaque a natus ex incidunt ea similique! Lorem ipsumadipisicing elit. Maxime inventore ullam laboriosam atque.
+        <div class="mb-12">
+            <h2 class="text-gray-600 dark:text-white font-bold text-2xl sm:text-3xl md:text-3xl  mb-4">Video Series: A Guide to Learning Git</h2>
+                <p class="text-gray-600 dark:text-gray-400 pb-4">
+                    This video series will guide you through the most basic git commands and help you <b>overcome the most frequent mistakes</b> beginners make, and how to prevent and overcome these! Since learning git is all about practice, be sure to <b>try there exercises</b>  out on your own! 
                 </p>
         </div>
         <div class="space-y-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:space-y-0 sm:gap-4">
-            <div class={cn(card.outer)}>
-                <div class={cn(card.inner, "flex flex-col justify-between h-full")}>
-                    <div>
-                      <img src="/thumbnail-matt.png" loading="lazy"></img>
-                    </div>
-                    <div class="mt-6 space-y-2">
-                        <h3 class="text-gray-950 dark:text-white text-lg font-medium">Introduction</h3>
-                        <p class="text-gray-600 dark:text-gray-400">What is git? Why learn it? How do these videos fit in with your git journey? All these questions will be answered here.</p>
-                    </div>
-                </div>
-            </div>
-            <div class={cn(card.outer)}>
-                <div class={cn(card.inner, "h-full flex flex-col justify-between")}>
-                    <div>
-                     <img src="/thumbnail-screen.png" loading="lazy"></img>
-                    </div>
-                    <div class="mt-6 space-y-2">
-                        <h3 class="text-gray-950 dark:text-white text-lg font-medium">Focus: Local</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Understanding how the most basic git commands work - from git init to git commit - on an intuitive, conceptual level, locally. </p>
-                    </div>
-                </div>
-            </div>
-            <div class={cn(card.outer)}>
-                <div class={cn(card.inner, "h-full flex flex-col justify-between")}>
-                    <div>
-                           <img src="/thumbnail-matt.png" loading="lazy"></img>
-                        <!-- TODO: insert thumbnail -->
-                    </div>
-                    <div class="mt-6 space-y-2">
-                        <h3 class="text-gray-950 dark:text-white text-lg font-medium">SSH Key Pairs</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Connecting to Git like a pro! Using SSH key pairs, you can securely connect to your repositories with ease.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class={cn(card.outer, "sm:col-span-2")}>
-                <div class={cn(card.inner, "flex flex-col justify-between h-full")}>
-                    <div>
-                        <div class="overflow-x-auto lg:overflow-visible py-6 relative bg-white border flex items-center justify-center dark:border-info-400/20 dark:bg-gray-950/25">
-                        </div>
-                    </div>
-                    <div class="mt-6 space-y-2">
-                        <h3 class="text-gray-950 dark:text-white text-lg font-medium">Easy to customize</h3>
-                        <p class="max-w-lg text-gray-600 dark:text-gray-400">Quam quasi impedit voluptatum a reiciendis tempora atque aspernatur voluptatibus nostru.</p>
-                    </div>
-                </div>
-            </div> -->
-            <div class={cn(card.outer, "sm:row-start-2 lg:row-start-auto")}>
-                <div class={cn(card.inner, "flex flex-col justify-between h-full")}>
-                  <!-- TODO: video thumbnail -->
-                <img src="/thumbnail-screen.png" loading="lazy"></img>
-                    <div class="mt-6 space-y-2">
-                        <h3 class="text-gray-950 dark:text-white text-lg font-medium">Collaboration in Git</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Learn how to work with shared repositories, and what it means to collaborate in version control.</p>
-                    </div>
-                </div>
-            </div>
-             <div class={cn(card.outer)}>
-                <div class={cn(card.inner, "h-full flex flex-col justify-between")}>
-                    <img src="/thumbnail-minna.png" loading="lazy"></img>
-                    <div class="mt-6 space-y-2">
-                        <h3 class="text-gray-950 dark:text-white text-lg font-medium">Solving Conflicts</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Learn how to recognize and resolve conflicts</p>
-                    </div>
-                </div>
-            </div>
-            <div class={cn(card.outer, "sm:row-start-2 lg:row-start-auto")}>
-                <div class={cn(card.inner, "flex flex-col justify-between h-full")}>
-                  <!-- TODO: video thumbnail -->
-                  <div class="mb-6 space-y-2">
-                      <h3 class="text-gray-950 dark:text-white text-lg font-medium">(Feature) Branches</h3>
-                      <p class="text-gray-600 dark:text-gray-400">Use branches to work in a conflict-avoidant way, and keep your work cleaner.</p>
-                  </div>
-                    <img src="/thumbnail-together.png" loading="lazy"></img>
-                </div>
+            <CourseMaterialCard
+                imagePath = "/thumbnail-matt.png"
+                heading ="Introduction"
+                description="What is git? Why learn it? How do these videos fit in with your git journey? All these questions will be answered here"
+                videoLink = {[
+                    {title: "Introduction", url: "https://h4sci.github.io"},
+                    {title: "Timeline", url: "https://h4sci.github.io"}
+                ]}
+                />
+            <CourseMaterialCard
+                imagePath = "/thumbnail-screen.png"
+                heading ="Focus: Local"
+                description="Understanding how the most basic git commands work - from git init to git commit - on an intuitive, conceptual level, locally."
+                videoLink = {[
+                    {title: "Checkout, Add", url: "https://h4sci.github.io"},
+                    {title: "Commit", url: "https://h4sci.github.io"}
+                ]}
+                />
+            <CourseMaterialCard
+                imagePath = "/thumbnail-matt.png"
+                heading ="SSH Key Pairs"
+                description="Connecting to Git like a pro! Using SSH key pairs, you can securely connect to your repositories with ease."
+                videoLink = {[
+                    {title: "Conceptual", url: "https://h4sci.github.io"},
+                    {title: "Practical", url: "https://h4sci.github.io"}
+                ]}
+                />
+            <CourseMaterialCard
+                imagePath = "/thumbnail-screen.png"
+                heading ="Practical Walkthrough"
+                description="Practicing the conceptual commands learned on a simple repository, learning how to stage, commit and push changes."
+                videoLink = {[
+                    {title: "Add, Commit", url: "https://h4sci.github.io"},
+                    {title: "Status, Commit", url: "https://h4sci.github.io"}
+                ]}
+                />
+             <CourseMaterialCard
+                imagePath = "/thumbnail-together.png"
+                heading ="Git Collaboration"
+                description="Understanding how collaboration on repositories works in git, working through a simple repository"
+                videoLink = {[
+                    {title: "Conceptual", url: "https://h4sci.github.io"},
+                    {title: "Practical: cloning, changing, committing", url: "https://h4sci.github.io"}
+                ]}
+                />
+             <CourseMaterialCard
+                imagePath = "/thumbnail-minna.png"
+                heading ="Conflicts & (Feature) Branches"
+                description="How do conflicts happen? How do you solve them and work in a conflict avoidant way? All these questions will be answered through these videos"
+                videoLink = {[
+                    {title: "Individual Files", url: "https://h4sci.github.io"},
+                    {title: "Same Files", url: "https://h4sci.github.io"},
+                    {title: "Branch Creation", url: "https://h4sci.github.io"},
+                    {title: "Pull Requests", url: "https://h4sci.github.io"},
+
+                ]}
+                />
             </div>
         </div>
     </Container>
