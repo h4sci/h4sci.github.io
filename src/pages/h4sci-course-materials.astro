@@ -19,6 +19,12 @@ import VideoGridSection from '@components/VideoGridSection.astro';
 		<!-- Left column: 3 cards stacked -->
 		<div class="space-y-6">
 			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+					<div class="w-full mb-4">
+						<div class="flex items-center justify-center space-x-4">
+								<img src="/element_screenshot.png" alt="Element screenshot" width="200" class="block dark:hidden flex-shrink-0 rounded object-cover"></img>
+								<img src="/github_screenshot.png" alt="GitHub screenshot" width="230" class="block dark:hidden flex-shrink-0 rounded object-cover"></img>
+						</div>
+				</div>
 				<p class="text-gray-600 dark:text-gray-400 mb-6">
 			    We have a highly <b>interactive online lecture</b> and <b>Matrix Chat channel</b> which want to coach as much as possible rather than teach.
 			    Bring your questions and real world problems to class!
@@ -28,9 +34,10 @@ import VideoGridSection from '@components/VideoGridSection.astro';
 
 			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
 			<div class="max-w-48 w-full h-fit mx-auto mb-4">
-			<p class="flex items-center space-x-2 mb-0">
-			<img src="/h4sci-yt.png" alt="Hacking for Science on YouTube" loading="lazy" class="rounded-lg">
-			<img src="youtube.svg" width="120" class="block dark:hidden flex-shrink-0"></img>
+			<p class="flex items-center space-x-10 mb-0">
+				<!-- src="/h4sci-logo-web-light-short.svg"  -->
+			<img src="/favicon.svg" alt="Hacking for Science on YouTube" loading="lazy" class="block dark:hidden flex-shrink-0"></img>
+			<img src="/youtube.svg" width="120" class="block dark:hidden flex-shrink-0"></img>
 			</p>
 			</div>
 				<p class="text-gray-600 dark:text-gray-400 mb-6">
@@ -47,7 +54,7 @@ import VideoGridSection from '@components/VideoGridSection.astro';
 
 			<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
 			<div class="max-w-48 w-full h-fit mx-auto mb-4">
-			<img src="quiz.png" width="400" class="block dark:hidden flex-shrink-0"></img>
+			<img src="quiz.png" width="400" class="block dark:hidden flex-shrink-0 rounded object-cover"></img>
 			</div>
 				<p class="text-gray-600 dark:text-gray-400 mb-6">
 				The ability to gut check not only your raw knowledge but your level of comfort is important when developing a more tech assisted personal workflow.
