@@ -1,0 +1,68 @@
+---
+import Container from "./Container.astro"
+import Carousel from "./Carousel.astro"
+
+
+// Example data for the carousel
+const carouselItems = [
+  {
+  imagePath: "/layered_screenshots.png",
+  heading: "Interactive Online Learning",
+  description: "We have a highly interactive online lecture and Matrix Chat channel which want to coach as much as possible rather than teach",
+  link: {
+    title: "Sign up for the 25/26 Course at ETH Zurich",
+    url: "https://www.vorlesungen.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=192666&semkez=2025W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+  }
+},
+  {
+    imagePath: "/quiz_screenshot.png",
+    heading: "Practice Quizzes",
+    description: "The ability to gut check not only your raw knowledge but your level of comfort is important when developing a more tech assisted personal workflow.",
+    link: {
+      title: "H4Sci Quizzes",
+      url: "https://h4sci.github.io/h4sci-tasks/index.html"
+    }
+  },
+	  {
+    imagePath: "/youtube_channel_h4sci.png",
+		width: "10",
+    heading: "Educational Videos",
+    description: "Information is ubiquitous. Time to practice, commitment and endurance is limited and has opportunity costs.",
+    videoLink: [
+      {
+        title: "H4Sci YouTube Channel",
+        url: "https://youtube.com/@h4sci"
+      }
+    ]
+  },
+  {
+    imagePath: "/rse_book2.jpeg",
+    heading: "Research Software Engineering Book",
+    description: "The book project suggests a carefully curated dose of software engineering for non-computer scientist data enthusiasts to learn.",
+    link: {
+      title: "Read Online on GitHub",
+      url: "https://rse-book.github.io"
+    }
+  }
+];
+---
+
+<Container>
+	<div class="mb-12">
+	<h1 class="text-gray-900 dark:text-white font-bold text-4xl sm:text-5xl md:text-6xl mt-16 mb-4">Course Materials</h1>
+	<h2 class="text-gray-600 dark:text-white font-bold text-2xl sm:text-3xl md:text-3xl  mb-4">Prepare. Practice. Discuss. Apply.</h2>
+	<!-- <p class="text-gray-600 dark:text-gray-400 pb-4">
+	Everyone has a different starting point, we all learn differently - particularly in a course where students from many fields come together.
+    Hacking for Science aims to provide comfortable entry points to a wide variety of people who are interested in programming with data.
+	</p> -->
+	</div>
+
+	 <!-- Carousel Section -->
+		<div class="mb-16">
+			<Carousel 
+				items={carouselItems} 
+				autoplay={true} 
+				autoplayDelay={6000} 
+			/>
+		</div>
+</Container>
