@@ -6,6 +6,27 @@ import Carousel from "./Carousel.astro"
 // Example data for the carousel
 const carouselItems = [
   {
+   imagePath: "/youtube_channel_h4sci.png",
+		width: "10",
+   heading: "Educational Videos",
+   description: "Information is ubiquitous. Time to practice, commitment and endurance is limited and has opportunity costs.",
+   videoLink: [
+     {
+       title: "H4Sci YouTube Channel",
+       url: "https://youtube.com/@h4sci"
+     }
+   ]
+ },
+ {
+   imagePath: "/rse_book2.jpeg",
+   heading: "Research Software Engineering Book",
+   description: "The book project suggests a carefully curated dose of software engineering for non-computer scientist data enthusiasts to learn.",
+   link: {
+     title: "Read Online on GitHub",
+     url: "https://rse-book.github.io"
+   }
+ },
+  {
   imagePath: "/layered_screenshots.png",
   heading: "Interactive Online Learning",
   description: "We have a highly interactive online lecture and Matrix Chat channel which want to coach as much as possible rather than teach",
@@ -21,27 +42,6 @@ const carouselItems = [
     link: {
       title: "H4Sci Quizzes",
       url: "https://h4sci.github.io/h4sci-tasks/index.html"
-    }
-  },
-	  {
-    imagePath: "/youtube_channel_h4sci.png",
-		width: "10",
-    heading: "Educational Videos",
-    description: "Information is ubiquitous. Time to practice, commitment and endurance is limited and has opportunity costs.",
-    videoLink: [
-      {
-        title: "H4Sci YouTube Channel",
-        url: "https://youtube.com/@h4sci"
-      }
-    ]
-  },
-  {
-    imagePath: "/rse_book2.jpeg",
-    heading: "Research Software Engineering Book",
-    description: "The book project suggests a carefully curated dose of software engineering for non-computer scientist data enthusiasts to learn.",
-    link: {
-      title: "Read Online on GitHub",
-      url: "https://rse-book.github.io"
     }
   }
 ];
@@ -59,10 +59,10 @@ const carouselItems = [
 
 	 <!-- Carousel Section -->
 		<div class="mb-16">
-			<Carousel 
-				items={carouselItems} 
-				autoplay={true} 
-				autoplayDelay={6000} 
+			<Carousel
+				items={carouselItems}
+				autoplay={true}
+				autoplayDelay={6000}
 			/>
 		</div>
 </Container>
