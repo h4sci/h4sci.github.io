@@ -7,7 +7,6 @@ import Carousel from "./Carousel.astro"
 const carouselItems = [
   {
    imagePath: "/youtube_channel_h4sci.png",
-		width: "10",
    heading: "Educational Videos",
    description: "Information is ubiquitous. Time to practice, commitment and endurance is limited and has opportunity costs.",
    videoLink: [
@@ -62,7 +61,8 @@ const carouselItems = [
 			<Carousel
 				items={carouselItems}
 				autoplay={true}
-				autoplayDelay={6000}
+				autoplayDelay={5000} 
 			/>
+      <!-- autoplayDelay is in milliseconds -->
 		</div>
 </Container>

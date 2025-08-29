@@ -2,218 +2,261 @@
 const { items = [], autoplay = false, autoplayDelay = 5000 } = Astro.props;
 ---
 
-<div class="carousel-wrapper relative overflow-hidden">
+<div
+  class="carousel-wrapper relative overflow-hidden"
+  data-autoplay={autoplay}
+  data-autoplay-delay={autoplayDelay}
+>
   <!-- Carousel Container -->
-   <!-- TODO: if dark, add lighter card component around image! -->
+  <!-- TODO: if dark, add lighter card component around image! -->
   <div class="carousel-container relative">
-    <div class="carousel-track flex transition-transform duration-500 ease-in-out">
-      {items.map((item, index) => (
-        <div class="carousel-slide w-full flex-shrink-0 mb-12">
-          <div class="mt-12 grid sm:grid-cols-4 gap-4 sm:gap-12 max-w-3xl w-full mx-auto">
-            <div class="col-span-3">
-            {item.imagePath && (
-              // shadow-lg doesn't look good here imo, since images have different borders
-              <div class="w-full mb-6">
-                <div class="p-[--card-padding] rounded-[--card-border-radius] dark:bg-[--card-dark-bg] flex items-center justify-center">
-                  <img 
-                    src={item.imagePath} 
-                    alt={item.heading || 'Carousel image'} 
-                    loading="lazy" 
-                    class="w-full h-80 object-contain"
-                  />
+    <div
+      class="carousel-track flex transition-transform duration-500 ease-in-out"
+    >
+      {
+        items.map((item, index) => (
+          <div class="carousel-slide w-full flex-shrink-0 mb-12">
+            <div class="mt-12 grid sm:grid-cols-4 gap-4 sm:gap-12 max-w-3xl w-full mx-auto">
+              <div class="col-span-3">
+                {item.imagePath && (
+                  // shadow-lg doesn't look good here imo, since images have different borders
+                  <div class="w-full mb-6">
+                    <div class="p-[--card-padding] rounded-[--card-border-radius] dark:bg-[--card-dark-bg] flex items-center justify-center">
+                      <img
+                        src={item.imagePath}
+                        alt={item.heading || "Carousel image"}
+                        loading="lazy"
+                        class="w-full h-80 object-contain"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
+              <div class="space-y-4 text-center">
+                {item.heading && (
+                  <h3 class="text-gray-950 dark:text-white text-xl sm:text-2xl font-medium">
+                    {item.heading}
+                  </h3>
+                )}
+                {item.description && (
+                  <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    {item.description}
+                  </p>
+                )}
               </div>
-            )}
-            </div>
-            <div class="space-y-4 text-center">
-              {item.heading && (
-                <h3 class="text-gray-950 dark:text-white text-xl sm:text-2xl font-medium">
-                  {item.heading}
-                </h3>
-              )}
-              {item.description && (
-                <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                  {item.description}
-                </p>
-              )}
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 
   <!-- Navigation Dots -->
-  {items.length > 1 && (
-    <div class="flex justify-center space-x-2 pt-8 pb-4">
-      {items.map((_, index) => (
-        <button 
-          class="carousel-dot w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all duration-200 hover:bg-gray-400 dark:hover:bg-gray-500"
-          data-slide={index}
-          aria-label={`Go to slide ${index + 1}`}
-        >
-        </button>
-      ))}
-    </div>
-  )}
+  {
+    items.length > 1 && (
+      <div class="flex justify-center space-x-2 pt-8 pb-4">
+        {items.map((_, index) => (
+          <button
+            class="carousel-dot w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all duration-200 hover:bg-gray-400 dark:hover:bg-gray-500"
+            data-slide={index}
+            aria-label={`Go to slide ${index + 1}`}
+          ></button>
+        ))}
+      </div>
+    )
+  }
 
   <!-- Navigation Arrows -->
-  {items.length > 1 && (
-    <>
-      <button 
-        class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
-        aria-label="Previous slide"
-      >
-        <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-      <button 
-        class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
-        aria-label="Next slide"
-      >
-        <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
-    </>
-  )}
+  {
+    items.length > 1 && (
+      <>
+        <button
+          class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
+          aria-label="Previous slide"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600 dark:text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button
+          class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
+          aria-label="Next slide"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600 dark:text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </>
+    )
+  }
 </div>
 
-
-<script define:vars={{ autoplay, autoplayDelay }}>
+<script>
   class Carousel {
+    /** @type {HTMLElement} */ carousel;
+    /** @type {HTMLElement} */ track;
+    /** @type {NodeListOf<HTMLElement>} */ slides;
+    /** @type {NodeListOf<HTMLButtonElement>} */ dots;
+    /** @type {HTMLButtonElement | null} */ prevButton;
+    /** @type {HTMLButtonElement | null} */ nextButton;
+    /** @type {number} */ currentSlide = 0;
+    /** @type {number} */ totalSlides = 0;
+    /** @type {number | ReturnType<typeof setInterval> | null} */ autoplayInterval =
+      null;
+    /** @type {boolean} */ autoplay = false;
+    /** @type {number} */ autoplayDelay = 5000;
     constructor(element) {
       this.carousel = element;
-      this.track = element.querySelector('.carousel-track');
-      this.slides = element.querySelectorAll('.carousel-slide');
-      this.dots = element.querySelectorAll('.carousel-dot');
-      this.prevButton = element.querySelector('.carousel-prev');
-      this.nextButton = element.querySelector('.carousel-next');
-      
+      this.track = element.querySelector(".carousel-track");
+      this.slides = element.querySelectorAll(".carousel-slide");
+      this.dots = element.querySelectorAll(".carousel-dot");
+      this.prevButton = element.querySelector(".carousel-prev");
+      this.nextButton = element.querySelector(".carousel-next");
+
       this.currentSlide = 0;
       this.totalSlides = this.slides.length;
       this.autoplayInterval = null;
-      
+
       // Get autoplay settings from data attributes or use defaults
-      this.autoplay = element.dataset.autoplay === 'true';
+      this.autoplay = element.dataset.autoplay === "true";
       this.autoplayDelay = parseInt(element.dataset.autoplayDelay) || 5000;
-      
+
       this.init();
     }
-    
+
     init() {
       if (this.totalSlides <= 1) return;
-      
+
       // Add event listeners
-      this.prevButton?.addEventListener('click', () => this.prevSlide());
-      this.nextButton?.addEventListener('click', () => this.nextSlide());
-      
+      this.prevButton?.addEventListener("click", () => this.prevSlide());
+      this.nextButton?.addEventListener("click", () => this.nextSlide());
+
       this.dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => this.goToSlide(index));
+        dot.addEventListener("click", () => this.goToSlide(index));
       });
-      
+
       // Keyboard navigation
-      this.carousel.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') this.prevSlide();
-        if (e.key === 'ArrowRight') this.nextSlide();
+      this.carousel.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") this.prevSlide();
+        if (e.key === "ArrowRight") this.nextSlide();
       });
-      
+
       // Pause autoplay on hover
-      this.carousel.addEventListener('mouseenter', () => this.pauseAutoplay());
-      this.carousel.addEventListener('mouseleave', () => this.startAutoplay());
-      
+      this.carousel.addEventListener("mouseenter", () => this.pauseAutoplay());
+      this.carousel.addEventListener("mouseleave", () => this.startAutoplay());
+
       // Touch/swipe support
       this.addTouchSupport();
-      
+
       // Initialize autoplay
       if (this.autoplay) {
         this.startAutoplay();
       }
-      
+
       // Update initial state
       this.updateCarousel();
     }
-    
+
     goToSlide(slideIndex) {
       this.currentSlide = slideIndex;
       this.updateCarousel();
     }
-    
+
     nextSlide() {
       this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
       this.updateCarousel();
     }
-    
+
     prevSlide() {
-      this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+      this.currentSlide =
+        (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
       this.updateCarousel();
     }
-    
+
     updateCarousel() {
       // Update track position
       const translateX = -this.currentSlide * 100;
       this.track.style.transform = `translateX(${translateX}%)`;
-      
+
       // Update dots
       this.dots.forEach((dot, index) => {
         if (index === this.currentSlide) {
-          dot.classList.add('bg-gray-600', 'dark:bg-gray-300');
-          dot.classList.remove('bg-gray-300', 'dark:bg-gray-600');
+          dot.classList.add("bg-gray-600", "dark:bg-gray-300");
+          dot.classList.remove("bg-gray-300", "dark:bg-gray-600");
         } else {
-          dot.classList.add('bg-gray-300', 'dark:bg-gray-600');
-          dot.classList.remove('bg-gray-600', 'dark:bg-gray-300');
+          dot.classList.add("bg-gray-300", "dark:bg-gray-600");
+          dot.classList.remove("bg-gray-600", "dark:bg-gray-300");
         }
       });
     }
-    
+
     startAutoplay() {
       if (!this.autoplay || this.totalSlides <= 1) return;
-      
+
       this.autoplayInterval = setInterval(() => {
         this.nextSlide();
       }, this.autoplayDelay);
     }
-    
+
     pauseAutoplay() {
       if (this.autoplayInterval) {
         clearInterval(this.autoplayInterval);
         this.autoplayInterval = null;
       }
     }
-    
+
     addTouchSupport() {
       let startX = 0;
       let startY = 0;
       let moveX = 0;
       let moveY = 0;
-      
-      this.carousel.addEventListener('touchstart', (e) => {
+
+      this.carousel.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
       });
-      
-      this.carousel.addEventListener('touchmove', (e) => {
+
+      this.carousel.addEventListener("touchmove", (e) => {
         if (!startX || !startY) return;
-        
+
         moveX = e.touches[0].clientX;
         moveY = e.touches[0].clientY;
-        
+
         const diffX = startX - moveX;
         const diffY = startY - moveY;
-        
+
         // Prevent vertical scrolling if horizontal swipe is detected
         if (Math.abs(diffX) > Math.abs(diffY)) {
           e.preventDefault();
         }
       });
-      
-      this.carousel.addEventListener('touchend', () => {
+
+      this.carousel.addEventListener("touchend", () => {
         if (!startX || !startY) return;
-        
+
         const diffX = startX - moveX;
         const diffY = startY - moveY;
-        
+
         // Only trigger if horizontal movement is greater than vertical
         if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
           if (diffX > 0) {
@@ -222,7 +265,7 @@ const { items = [], autoplay = false, autoplayDelay = 5000 } = Astro.props;
             this.prevSlide();
           }
         }
-        
+
         startX = 0;
         startY = 0;
         moveX = 0;
@@ -230,10 +273,10 @@ const { items = [], autoplay = false, autoplayDelay = 5000 } = Astro.props;
       });
     }
   }
-  
+
   // Initialize all carousels on the page
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.carousel-wrapper').forEach(carousel => {
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".carousel-wrapper").forEach((carousel) => {
       new Carousel(carousel);
     });
   });
