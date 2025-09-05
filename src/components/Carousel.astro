@@ -22,12 +22,14 @@ const { items = [], autoplay = false, autoplayDelay = 5000 } = Astro.props;
                   // shadow-lg doesn't look good here imo, since images have different borders
                   <div class="w-full mb-6">
                     <div class="p-[--card-padding] rounded-[--card-border-radius] dark:bg-[--card-dark-bg] flex items-center justify-center">
+<a href={item.link.url} target="_blank">
                       <img
                         src={item.imagePath}
                         alt={item.heading || "Carousel image"}
                         loading="lazy"
                         class="w-full h-80 object-contain"
                       />
+</a>
                     </div>
                   </div>
                 )}
@@ -42,9 +44,13 @@ const { items = [], autoplay = false, autoplayDelay = 5000 } = Astro.props;
                   <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
                     {item.description}
                   </p>
+
                 )}
               </div>
             </div>
+            <p class="text-center">
+                     <a href={item.link.url} target="_blank">{item.link.title}</a>
+            </p>
           </div>
         ))
       }
