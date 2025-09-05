@@ -1,0 +1,55 @@
+---
+import CourseMaterialCard from "./CourseMaterialCard.astro";
+import Container from "./Container.astro";
+---
+
+<section id="features" class="scroll-mt-24">
+    <Container>
+        <div class="mb-12">
+            <h2 class="text-gray-600 dark:text-white font-bold text-2xl sm:text-3xl md:text-3xl  mb-4">Video Series: A Guide to Learning Git</h2>
+                <p class="text-gray-600 dark:text-gray-400 pb-4">
+                    Git is the de facto standard when it comes to managing source code.
+                    Almost all software development teams use git in some form or another.
+                    Yet, git is not always intuitive and to reach a level of git proficiency that
+                    makes a collaborator fit into teams requires practice.
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 pb-4">
+                    The goal of this video series is to motivate and guide the listener's training.
+                    The largest git platforms are worth billions of dollars even though large chunks
+                    of the source code they host are publicly available to anyone.
+                    The enormous amount of public git repositories does not only provide free software to
+                    the endusers and inspiration to developers - it's a lake of information for AI tools
+                    from GitHub Co-Pilot to Claude and beyond.
+
+                </p>
+        </div>
+        <div class="space-y-4 sm:grid sm:grid-cols-2 lg:grid-cols-2 sm:space-y-0 sm:gap-4">
+            <CourseMaterialCard
+                imagePath = "/thumbnail-matt.png"
+                heading ="Conceptual Videos"
+                description="Understand the core ideas. A good conceptual understanding makes your know-how sustainable and transferable to a broad variety of situations."
+                videoLink = {[
+                    {title: "The Potential of Your Investment", url: "https://youtu.be/YmWQfQXgAj0?si=Ic6z05Oiz3Xd2zfZ"},
+                    {title: "Just Git. Git on a Local Computer.", url: "https://youtu.be/kb7fL6jy-p4?si=SFHblVjJpyQ3Zarg"},
+                    {title: "The CLI: Git in the Language of a 4-Year Old", url: "https://youtu.be/kzNjnzm1R0E?si=swjjJiyL1hnQueEQ"},
+                    {title: "The Idea of Collaboration via Git", url: "https://youtu.be/KCAosSLHi6k?si=aNUpjxrmsGUfTsvD"},
+                    {title: "The Concept of SSH Key Pairs. Secure Automation.", url: "https://youtu.be/yBnPKOcK31A?si=Uo9ybYV00DtzC9tD"},
+                ]}
+                />
+            <CourseMaterialCard
+                imagePath = "/screen_rec_mm.png"
+                heading ="Walkthrough Videos"
+                description="Get comfortable by applying the git workflow. Our walkthroughs help you follow along step by step. All walkthroughs are accompanied by sections in the Research Software Engineering book as well as benchmarking quizzes."
+                videoLink = {[
+                    {title: "Moving Around Locally", url: "https://www.youtube.com/watch?v=T7vfHKHj7HE&list=PLurgzfjmXEaNY0hgkyUFDeQVNqzPifYMY&index=1"},
+                    {title: "Collaboration Walkthrough", url: "https://www.youtube.com/playlist?list=PLurgzfjmXEaNY0hgkyUFDeQVNqzPifYMY"},
+                    {title: "Resolving Merge Conflicts", url: "https://www.youtube.com/playlist?list=PLurgzfjmXEaNY0hgkyUFDeQVNqzPifYMY"},
+                    {title: "Contribute Via Feature Branches", url: "https://www.youtube.com/playlist?list=PLurgzfjmXEaNY0hgkyUFDeQVNqzPifYMY"},
+                    {title: "Pushing a Feature Branch to a Remote Repository", url: "https://www.youtube.com/playlist?list=PLurgzfjmXEaNY0hgkyUFDeQVNqzPifYMY"},
+                    {title: "The Process of a Pull Request (Merge Request)", url: "https://www.youtube.com/playlist?list=PLurgzfjmXEaNY0hgkyUFDeQVNqzPifYMY"}
+                ]}
+                />
+            </div>
+        </div>
+    </Container>
+</section>

@@ -1,0 +1,34 @@
+---
+// ThemeScript.astro - Script to prevent flash of unstyled content
+---
+
+<!-- TODO: identify if we really need this -->
+<script is:inline>
+  // This script runs immediately when the page loads to prevent flash
+  (function () {
+    const getStoredTheme = () => {
+      if (typeof localStorage !== "undefined") {
+        return localStorage.getItem("theme");
+      }
+      return null;
+    };
+
+    const getPreferredTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    };
+
+    const theme = getPreferredTheme();
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  })();
+</script>
