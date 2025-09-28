@@ -4,7 +4,7 @@ author: "Matt Bannert"
 toc: false
 draft: false
 snippet: "Stack -- a developer's toolkit. We discussed how much DevOps a researcher and analyst really needs. Not all rabbit holes are for everyone. Git version control carpentry may be the one skill you must take a way from a semester of hacking for science... Read more!"
-cover: "./dr_egghead_panics.jpg"
+cover: ./dr_egghead_panics.jpg
 coverAlt: "Dr. Egghead panics - too many tools and rabbit holes for him."
 publishDate: "2025-09-26"
 category: "Recap"
