@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import themer from "@tailus/themer";
+import typography from "@tailwindcss/typography";
 
 module.exports = {
     content: [
@@ -16,6 +17,7 @@ module.exports = {
             background: "light",
             border: "light",
             padding: "large"
-        })
+        }),
+        typography
     ],
 };
