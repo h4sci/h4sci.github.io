@@ -14,6 +14,8 @@ const publishedBlogEntries = await getCollection("blog", ({ data }) => {
 publishedBlogEntries.sort(function (a, b) {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
+
+console.log("Cover data:", publishedBlogEntries[0]?.data.cover);
 ---
 
 
@@ -33,7 +35,7 @@ publishedBlogEntries.sort(function (a, b) {
                 <a href={`/blog/${blogPostEntry.slug}`}>
                   <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
                     <Picture
-                      src={blogPostEntry.data.cover}
+                      src={blogPostEntry.data.cover.src}
                       alt={blogPostEntry.data.coverAlt}
                       sizes="(max-width: 800px) 100vw, 800px"
                       width={800}
