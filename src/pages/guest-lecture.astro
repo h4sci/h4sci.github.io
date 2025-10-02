@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "@components/Container.astro";
+---
+
+<Layout title="Guest Lecture - H4Sci">
+  <main class="space-y-16 sm:space-y-28 lg:space-y-32 pb-40 overflow-clip">
+    <Container>
+      <div class="mb-12">
+        <h1
+          class="text-gray-900 dark:text-white font-bold text-4xl sm:text-5xl md:text-6xl mt-16 mb-4"
+        >
+          Guest Lecture
+        </h1>
+        <h2
+          class="text-gray-600 dark:text-gray-300 font-bold text-2xl sm:text-3xl md:text-3xl mb-8"
+        >
+          For the HSG Course "Data Handling"
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 w-2/3 pb-4">
+          On the 23.10, Minna Heim will hold a Guest Lecture about "Leveraging
+          APIs for Economic Data" in the University of St. Gallen Course <a
+            href="https://courses.unisg.ch/event/events/by-term/4d90fc2e-5321-473f-84d5-498a70062b9d/14867328"
+            target="_blank"
+            class="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+            >Data Handling</a
+          >. Since the topic is also relevant for the H4Sci Community, the
+          information can also be accessed here.
+        </p>
+
+        <!-- Resources Links -->
+        <h3 class="text-gray-900 dark:text-white font-semibold text-lg mb-4">
+          Resources
+        </h3>
+        <div class="space-y-3">
+          <div>
+            <a
+              href="https://minnaheim.github.io/dh_guest_lecture_2025/presentation.html#/title-slide"
+              class="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              📊 Lecture Slides: "Leveraging APIs for Economic Data"
+            </a>
+          </div>
+          <div>
+            <a
+              href="/blog/block-1-debriefing"
+              class="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              📝 Related Exercise - Blog Post
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
