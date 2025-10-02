@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import Sectionhead from "@components/SectionHead.astro";
@@ -14,66 +13,63 @@ const publishedBlogEntries = await getCollection("blog", ({ data }) => {
 publishedBlogEntries.sort(function (a, b) {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
-
-console.log("Cover data:", publishedBlogEntries[0]?.data.cover);
 ---
 
-
 <Layout title="Blog">
-    <Container>
-      <Sectionhead>
-        <Fragment slot="title">The H4Sci Blog</Fragment>
-        <Fragment slot="desc">
-         ... resources, recaps, tutorials and project news.
-        </Fragment>
-      </Sectionhead>
-      <main class="mt-16 mb-16">
-        <ul class="grid gap-16 max-w-4xl mx-auto">
-          {
-            publishedBlogEntries.map((blogPostEntry, index) => (
-              <li>
-                <a href={`/blog/${blogPostEntry.slug}`}>
-                  <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
-                    <Picture
-                      src={blogPostEntry.data.cover.src}
-                      alt={blogPostEntry.data.coverAlt}
-                      sizes="(max-width: 800px) 100vw, 800px"
-                      width={800}
-                      height={600}
-                      loading={index <= 2 ? "eager" : "lazy"}
-                      decoding={index <= 2 ? "sync" : "async"}
-                      class="w-full rounded-md object-cover object-center bg-white"
-                    />
-                    <div>
-                      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-                        {blogPostEntry.data.category}
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">The H4Sci Blog</Fragment>
+      <Fragment slot="desc">
+        ... resources, recaps, tutorials and project news.
+      </Fragment>
+    </Sectionhead>
+    <main class="mt-16 mb-16">
+      <ul class="grid gap-16 max-w-4xl mx-auto">
+        {
+          publishedBlogEntries.map((blogPostEntry, index) => (
+            <li>
+              <a href={`/blog/${blogPostEntry.slug}`}>
+                <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                  <img
+                    src={blogPostEntry.data.cover.src}
+                    alt={blogPostEntry.data.coverAlt}
+                    width={800}
+                    height={600}
+                    loading={index <= 2 ? "eager" : "lazy"}
+                    decoding={index <= 2 ? "sync" : "async"}
+                    class="w-full rounded-md object-cover object-center bg-white dark:bg-gray-800"
+                  />
+                  <div>
+                    <span class="text-blue-400 dark:text-blue-300 uppercase tracking-wider text-sm font-medium">
+                      {blogPostEntry.data.category}
+                    </span>
+
+                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 text-gray-900 dark:text-gray-100">
+                      {blogPostEntry.data.title}
+                    </h2>
+
+                    <div class="flex gap-2 mt-3">
+                      <span class="text-gray-400 dark:text-gray-500">
+                        {blogPostEntry.data.author}
                       </span>
-
-                      <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
-                        {blogPostEntry.data.title}
-                      </h2>
-
-                      <div class="flex gap-2 mt-3">
-                        <span class="text-gray-400">
-                          {blogPostEntry.data.author}
-                        </span>
-                        <span class="text-gray-400">•</span>
-                        <time
-                          class="text-gray-400"
-                          datetime={blogPostEntry.data.publishDate.toISOString()}>
-                          {blogPostEntry.data.publishDate.toDateString()}
-                        </time>
-                      </div>
-                      <p>
-                          {blogPostEntry.data.snippet}
-                        </p>
+                      <span class="text-gray-400 dark:text-gray-500">•</span>
+                      <time
+                        class="text-gray-400 dark:text-gray-500"
+                        datetime={blogPostEntry.data.publishDate.toISOString()}
+                      >
+                        {blogPostEntry.data.publishDate.toDateString()}
+                      </time>
                     </div>
+                    <p class="text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
+                      {blogPostEntry.data.snippet}
+                    </p>
                   </div>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </main>
-    </Container>
-  </Layout>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </Container>
+</Layout>
