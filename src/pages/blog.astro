@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import Sectionhead from "@components/SectionHead.astro";
@@ -34,6 +34,7 @@ console.log("Cover data:", publishedBlogEntries[0]?.data.cover);
               <li>
                 <a href={`/blog/${blogPostEntry.slug}`}>
                   <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                      <!--
                     <Picture
                       src={blogPostEntry.data.cover.src}
                       alt={blogPostEntry.data.coverAlt}
@@ -43,7 +44,7 @@ console.log("Cover data:", publishedBlogEntries[0]?.data.cover);
                       loading={index <= 2 ? "eager" : "lazy"}
                       decoding={index <= 2 ? "sync" : "async"}
                       class="w-full rounded-md object-cover object-center bg-white"
-                    />
+                    />-->
                     <div>
                       <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
                         {blogPostEntry.data.category}
@@ -52,6 +53,7 @@ console.log("Cover data:", publishedBlogEntries[0]?.data.cover);
                       <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
                         {blogPostEntry.data.title}
                       </h2>
+                      <Image src={blogPostEntry.data.cover} alt={blogPostEntry.data.coverAlt}
 
                       <div class="flex gap-2 mt-3">
                         <span class="text-gray-400">
