@@ -17,7 +17,7 @@ const blogCollection = defineCollection({
     author: z.string().default('The Zurich R User Group'),
     category: z.string(),
     tags: z.array(z.string()),
-    cover: image(), // Using the image parameter here
+    cover: image() as z.ZodType<ImageMetadata>, // Using the image parameter here
     coverAlt: z.string(),
   }),
 });
