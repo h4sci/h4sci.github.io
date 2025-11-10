@@ -14,7 +14,7 @@ tags: [Data Science, API, R]
 
 By the end of this blog post, **you will have a better understanding of
 APIs and their benefits for researchers**, and moreover, you will have built your own API
-wrapper, and possibly, even your own API endpoints. Most importantly, the in-depth walkthrough will hopefully help you identify APIs in the wild. **You will realize that APIs are used everywhere**, from Art Museums to COVID-19 case rates.
+wrapper, and possibly, even your own API endpoints. Most importantly, the in-depth walkthrough will hopefully help you identify APIs in the wild. **You will realize that APIs are used everywhere**, from the KOF Data API[^1], to Art Museums and COVID-19 case rates.
 
 ### Getting Data, the Naive Way
 
@@ -421,24 +421,12 @@ package](https://httr2.r-lib.org/) - on their website, you can find the
 documentation to get started with using httr2. A short cheatsheet
 summarizes the essential functions:
 
-  --------------------------------------------------------------------------
-  Category          Function             Description
-  ----------------- -------------------- -----------------------------------
-  **Request**       `request()`          Creates a new HTTP request object
-                                         that defines the endpoint and
-                                         method (e.g., GET, POST).
-
-  **Request**       `req_perform()`      Sends the built request to the
-                                         server and *returns the response
-                                         object*.
-
-  **Response**      `resp_body_json()`   Parses the response body as JSON
-                                         and returns it as an R list.
-
-  **Response**      `resp_status()`      Retrieves the HTTP status from the
-                                         response object.
-  --------------------------------------------------------------------------
-
+| Category | Function | Description |
+|----------|----------|-------------|
+| **Request** | `request()` | Creates a new HTTP request object that defines the endpoint and method (e.g., GET, POST). |
+| **Request** | `req_perform()` | Sends the built request to the server and *returns the response object*. |
+| **Response** | `resp_body_json()` | Parses the response body as JSON and returns it as an R list. |
+| **Response** | `resp_status()` | Retrieves the HTTP status from the response object. |
 
 ### Build your own function wrapping the COVID API
 
@@ -452,17 +440,17 @@ only an open API for disease-related statistics, but also nice API
 documentation. We can look at various APIs and try out their endpoints!
 Try it out!
 
-![](/img/swagger_overview.png)
+![](img/swagger_overview.png)
 
 Here we can see various COVID-19 APIs, such as from Worldometer or Johns
 Hopkins University.
 
-![](/img/historical_endpoint.png)
+![](img/historical_endpoint.png)
 
 Selecting one endpoint to try out, we can identify the historical case
 counts of certain countries.
 
-![](/img/try_out_endpoint.png)
+![](img/try_out_endpoint.png)
 
 When trying out the endpoint, we can even get the data as responses, and
 see all of the components of a real API call.
@@ -742,8 +730,8 @@ Congratulations! You've just built your own API!
 
 I hope you were able to learn something through this blog post, whether
 that is how APIs and APIs wrapper work and look like, or even how to
-build your own API (wrapper). In case you have any questions, feel free
-to contact me at <heim@kof.ethz.ch>
+build your own API (wrapper). Please find additional information on the HSG Data Handling Lecture on their GitHub repository[^5].  In case you have any questions, feel free
+to contact me at heim [ at ] kof.ethz.ch.
 
 [^1]: https://kof.ethz.ch/en/forecasts-and-indicators/indicators/kof-economic-barometer.html
 
@@ -754,3 +742,5 @@ to contact me at <heim@kof.ethz.ch>
 [^4]: If you want to take a look at a sample solution of this task,
     check out:
     https://minnaheim.github.io/dh_guest_lecture_2025/presentation.html#/get-vaccine-rates
+
+[^5]: HSG Data Handling Lecture repository: https://github.com/ASallin/datahandling-lecture
