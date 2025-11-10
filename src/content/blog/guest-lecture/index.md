@@ -22,7 +22,7 @@ Let's go back to the initial of an economic index. How would we approach gatheri
 build our economic index?
 
 The *Naive Way* of collecting data would be to google for relevant data.
-Like in most countries, in Switzerland, the Federal Statistical Office (FSO) is a good source for information such as the GDP - the most common representation in macroeceonomics for a country's economic activity.
+Like in most countries, in Switzerland, the Federal Statistical Office (FSO) is a good source for information such as the GDP - the most common representation in macroeconomics for a country's economic activity.
 
 ![](img/google_datasets.png)
 
@@ -32,7 +32,7 @@ Portal*.
 ![](img/wirtschaftsdaten.png)
 
 Then, after searching for our desired time series, we would find different
-variations of gdp data.
+variations of GDP data.
 
 ![](img/search.png)
 
@@ -46,7 +46,7 @@ time series data is represented in this way[^2].
 ![](img/downloaded.png)
 
 So, once downloaded, we have to transform the data from wide to long format, so it is
-more handable for us.
+more handleable for us.
 
 ``` r
 library(readxl)
@@ -243,7 +243,7 @@ the most convenient way for us to use an API.
 Here is a visual example of how you might encounter an API wrapper. Notice how the functionality stays the same, we can perform the same tasks, but we see and interact with less complexity.
 This is something we call information hiding.
 
-There are many API rappers in R that you can use for your future
+There are many API wrappers in R that you can use for your future
 analyses, to name a few:
 
 -   the
@@ -751,8 +751,6 @@ to contact me at <heim@kof.ethz.ch>
 
 [^3]: Try executing the Get Request yourself in your browser:
     https://www.pxweb.bfs.admin.ch/api/v1/en/px-x-0204000000_106/px-x-0204000000_106.px
-
 [^4]: If you want to take a look at a sample solution of this task,
     check out:
     https://minnaheim.github.io/dh_guest_lecture_2025/presentation.html#/get-vaccine-rates
-    je-d-04.02.01.03.xlsx
