@@ -100,7 +100,7 @@ Given a runtime environment that allows you to run Docker, users can run our ent
 
 ### Environments to Run Docker on Our Computer
 
-The fact that running Docker locally is similar to run it on a server is especially great for non-computer science researchers who - like many if not most data scientists - learned programming by solving (data) puzzles. Developing for an app-life inside an isolated, standalone container teaches us to include and manage dependencies properly. Among other things it helps us understand that the difference between relative and absolute paths matters (and that hardcoded absolute path that only exist on your machine are just never a good idea).
+The fact that running Docker locally is similar to running it on a server is especially great for non-computer science researchers who - like many if not most data scientists - learned programming by solving (data) puzzles. Developing for an app-life inside an isolated, standalone container teaches us to include and manage dependencies properly. Among other things it helps us understand that the difference between relative and absolute paths matters (and that hardcoded absolute path that only exist on your machine are just never a good idea).
 
 **Docker Desktop and Docker CE**
 
