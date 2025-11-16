@@ -14,7 +14,7 @@ tags: [Survey, R, Shiny, Postgres, Docker, docker-compose]
 
 Imagine you're a chef who's perfected a complex recipe at home. It works beautifully in your kitchen with your pots, your stove, and your ingredients. But when you try to recreate it at a friend's house, nothing quite works the same way—the oven runs hot, the measurements are in different units, and you're missing that one crucial spice. This is essentially the problem developers face when moving applications between different computers and servers. Enter Docker: the solution that packages your application along with its entire "kitchen" so it works identically everywhere.
 
-<div class="text-4xl">"With Docker, your multi-parts application becomes a self-contained unit."</div>
+>"With Docker, your multi-parts application becomes a self-contained unit."
 
 In this post, we'll build a simple but working survey application using R Shiny and PostgreSQL. Our real focus though is on **how Docker transforms your development workflow**. We'll see how Docker containers solve the "works on my machine" problem, how Docker Compose allows us to manage multi-container applications with ease. And we'll see why Docker is such a game changer not only for seasoned Sysadmins and DevOps gurus but what it can do for data scientists and other applied researchers.
 
@@ -23,9 +23,9 @@ In this post, we'll build a simple but working survey application using R Shiny 
 
 **Docker** provides a runtime environment that allows us to run instances (containers) of previously built docker images. Think of a Docker image as a snapshot containing your application and everything it needs to run—the programming language, libraries, dependencies, system tools, and configuration. Containers are isolated from your host system and from each other, yet they can communicate when you tell them to. A bit like multiple self-contained computers running on your laptop, each doing its own job.
 
-**Docker Compose** takes containerization a step further. While simple Docker handles individual containers, Docker Compose coordinates multiple containers as a unified application. You describe your entire application stack in a single YAML file: Which containers do you need? How do they connect? What ports do they expose? Docker Compose handles all of this. One command brings everything up -- another tears it down again.
+**Docker Compose** takes containerization a step further. While simple Docker handles individual containers, Docker Compose coordinates multiple containers as a unified application. To do this, you describe your entire application stack in a single YAML file: Which containers do you need? How do they connect? What ports do they expose? Docker Compose handles all of this. One command brings everything up -- another tears it down again.
 
-**R Shiny** is a web application framework that allows statisticians and data scientists to stay firmly within their domain when creating web based graphical user interfaces (GUIs). If you're comfortable with R, we can build interactive web applications without *needing* to learn JavaScript, HTML or CSS. This way we can leverage our existing R skills to create a data collection tool without leaving R.
+**R Shiny** is a web application framework that allows statisticians and data scientists to stay firmly within their domain when creating web based graphical user interfaces (GUIs). If you're comfortable with R, we can build interactive web applications without *needing* to learn JavaScript, HTML or CSS. This way we can leverage our existing R skills to create a data collection tool or an interactive data visualisation tool without leaving R.
 
 **PostgreSQL** is the self-proclaimed "world's most advanced open source database" when it comes to relational database management systems (RDBMS). It's robust, handles concurrent connections well, and integrates seamlessly with R.
 
@@ -34,13 +34,21 @@ In this post, we'll build a simple but working survey application using R Shiny 
 
 First, before we look at the implementation details, let's compare the traditional approach to host all these parts locally with the containerized approach. That is where we see why Docker is transformative (=containerization for our purposes).
 
-<div class="text-4xl">"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on your local notebook."</div>
+>"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on your local notebook."
 
 ### Traditional Approach: Running Locally
 
 Running your R frontend locally is relatively straightforward if you're a data scientist who works with R interactively. You open RStudio, load your Shiny app script, and click "Run App." The application launches in your browser, done.
 
-But there are challenges around the corner: **Problem 1: Isolation.** When you run the application on your laptop, other people can't access it. **Problem 2: PostgreSQL installation.** You could install PostgreSQL directly on your operating system. That is, download the installer, set up a database server, configure users and permissions. But PostgreSQL configuration varies across platforms Windows, macOS and Linux may all behave differently. What version are you running? What port is it using? How do you ensure your colleague's setup matches yours? **Problem 3: Dependency management.** Your Shiny app needs specific R packages. Did you remember to document which ones? What versions? What if your colleague has a different version of R installed? **Problem 4: Sharing and collaboration.** To share your application, you'd need to write extensive setup instructions: "First install R version X.X.X, then PostgreSQL 16, then run these SQL scripts, then install these R packages, then configure these environment variables..."
+But there are challenges around the corner: 
+
+**Problem 1: Isolation.** When you run the application on your laptop, other people can't access it.
+
+**Problem 2: PostgreSQL installation.** You could install PostgreSQL directly on your operating system. That is, download the installer, set up a database server, configure users and permissions. But PostgreSQL configuration varies across platforms Windows, macOS and Linux may all behave differently. What version are you running? What port is it using? How do you ensure your colleague's setup matches yours?
+ 
+**Problem 3: Dependency management.** Your Shiny app needs specific R packages. Did you remember to document which ones? What versions? What if your colleague has a different version of R installed? 
+ 
+**Problem 4: Sharing and collaboration.** To share your application, you'd need to write extensive setup instructions: "First install R version X.X.X, then PostgreSQL 16, then run these SQL scripts, then install these R packages, then configure these environment variables..."
 
 ### Containers to the Rescue
 
@@ -50,7 +58,7 @@ and b) a *Postgres Backend* service. By giving containers names, these container
 In the compose file below, note the mounted *volumes* which are effectively folders on the host system that allow us to persist files beyond the lifetime of our containers. For the database container, it is used to persist the answers. For shiny it is used to persist the R code and allow for changes without rebuilding the entire image.
 
 
-In practice, a *docker-compose.yaml* file for our survey application could look like this:
+In practice, a `docker-compose.yaml` file for our survey application could look like this:
 
 ```yaml
 services:
@@ -100,18 +108,18 @@ Given a runtime environment that allows you to run Docker, users can run our ent
 
 ### Environments to Run Docker on Our Computer
 
-The fact that running Docker locally is similar to running it on a server is especially great for non-computer science researchers who - like many if not most data scientists - learned programming by solving (data) puzzles. Developing for an app-life inside an isolated, standalone container teaches us to include and manage dependencies properly. Among other things it helps us understand that the difference between relative and absolute paths matters (and that hardcoded absolute path that only exist on your machine are just never a good idea).
+The fact that running Docker locally is similar to running it on a server is especially great for non-computer science researchers who - like many if not most data scientists - learned programming by solving (data) puzzles. Developing for an app-life inside an isolated, standalone container teaches us to recognise what the quintessential dependencies are that are needed to run an application, and help us include and manage these dependencies properly. Among other things it helps us understand that the difference between relative and absolute paths matters (and that hardcoded absolute path that only exist on your machine are just never a good idea).
 
 **Docker Desktop and Docker CE**
 
-Yet, we need an environment to make containers run on our local computer. While Linux simply uses the same docker-ce (ce = community edition) as servers would, MacOs und Windows use Docker Desktop. Docker Desktop provides a graphical interface and handles some of the complexity of running Docker on non-Linux systems. Once installed, the experience is consistent across all platforms[^1].
+Yet, we need an environment to make containers run on our local computer. While Linux simply uses the same docker-ce (ce = community edition) as servers would, MacOS und Windows use Docker Desktop. Docker Desktop provides a graphical interface and handles some of the complexity of running Docker on non-Linux systems. Once installed, the experience is consistent across all platforms[^1].
 
 
 ## Breaking Down the Components: R Shiny Frontend
 
-For the frontend, we create a Shiny app that presents survey questions to users. The beauty of using Shiny here is that you can design your survey, add conditional logic — all without leaving the R environment. Our shiny app consists of two files: 1) ui.R holding a simple user interface and 2) server.R containing the logic and storage functions behind the survey. For more detailed discussion of shiny see the [shiny case study in the RSE book](https://rse-book.github.io/case-studies.html#web-applications-with-r-shiny).
+For the frontend, we create a Shiny app that presents survey questions to users. The beauty of using Shiny here is that you can design your survey, add conditional logic — all without leaving the R environment. Our shiny app consists of two files: 1) `ui.R` holding a simple user interface and 2) `server.R` containing the logic and storage functions behind the survey. For more detailed discussion of shiny see the [shiny case study in the RSE book](https://rse-book.github.io/case-studies.html#web-applications-with-r-shiny).
 
-Demo survey ui.R:
+Demo survey `ui.R`:
 
 ```r
 fluidPage(
@@ -137,7 +145,7 @@ fluidPage(
 
 ## Middleware Component: server.R
 
-The *server.R* file is a layer that takes the information from the frontend and sends it to the underlying Postgres database.
+The `server.R` file is a layer that takes the information from the frontend and sends it to the underlying Postgres database.
 
 ```r
 library(shiny)
@@ -377,7 +385,7 @@ CMD ["R", "--vanilla", "-e", "shiny::runApp('/srv/shiny-server/', host='0.0.0.0'
 
 ```
 
-In principle we use an off the shelf shiny image from the rocker project which is not ideally for ARM computers such as M1 Macs and beyond. The rocker projects does not have ARM images, so we use AMD as platform in order to avoid compilation. From the point of view of our proof of concept this is minor technical detail, but for production use it would certainly be good to use an image that is optimized for the target architecture. Note also that we force the process to use R binaries when possible to avoid lengthy builds due to compilation. The CMD command in the final line is not really relevant as we overwrite the command in the compose file.
+In principle we use an off-the-shelf shiny image from the rocker project which is not ideally for ARM computers such as M1 Macs and beyond. The rocker projects does not have ARM images, so we use AMD as platform in order to avoid compilation. From the point of view of our proof of concept this is minor technical detail, but for production use it would certainly be good to use an image that is optimized for the target architecture. Note also that we force the process to use R binaries when possible to avoid lengthy builds due to compilation. The CMD command in the final line is not really relevant as we overwrite the command in the compose file.
 
 
 
