@@ -25,14 +25,14 @@ In this post, we'll build a simple but working survey application using R Shiny 
 
 **Docker Compose** takes containerization a step further. While simple Docker handles individual containers, Docker Compose coordinates multiple containers as a unified application. You describe your entire application stack in a single YAML file: Which containers do you need? How do they connect? What ports do they expose? Docker Compose handles all of this. One command brings everything up -- another tears it down again.
 
-**R Shiny** is a web application framework that allows statisticians and data scientists to stay firmly within their domain when creating web based graphical user interfaces (GUIs). If you're comfortable with R, we can build interactive web applications without *needing* to learn JavaScript, HTML, or CSS. This way we can leverage our existing R skills to create a data collection tool without leaving R.
+**R Shiny** is a web application framework that allows statisticians and data scientists to stay firmly within their domain when creating web based graphical user interfaces (GUIs). If you're comfortable with R, we can build interactive web applications without *needing* to learn JavaScript, HTML or CSS. This way we can leverage our existing R skills to create a data collection tool without leaving R.
 
 **PostgreSQL** is the self-proclaimed "world's most advanced open source database" when it comes to relational database management systems (RDBMS). It's robust, handles concurrent connections well, and integrates seamlessly with R.
 
 
 ## Backend Component: Docker
 
-First, before we look at the implementation details, let's compare the traditional approach to host all these parts with the containerized approach. That is where we see why Docker is transformative (=containerization for our purposes).
+First, before we look at the implementation details, let's compare the traditional approach to host all these parts locally with the containerized approach. That is where we see why Docker is transformative (=containerization for our purposes).
 
 <div class="text-4xl">"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on your local notebook."</div>
 
@@ -45,9 +45,9 @@ But there are challenges around the corner: **Problem 1: Isolation.** When you r
 ### Containers to the Rescue
 
 With Docker, your multi-parts application becomes a self-contained unit. We define our entire application in a configuration file. Basically we run two services: a) an *R Shiny frontend* service
-and b) a *Postgres Backend* service. By given containers names, these containers can be accessed from the other container using that name, e.g., *db_container* instead of localhost. Note, that we use an off-the-shelf postgres image and a custom image for the shiny one. Our shiny DOCKERFILE recipe to build the shiny image is super minimal and not really lean and optimised, but a quick ahd working solution that avoids the rabbit hole of in-depth image optimization. That's another blog post - stay tuned :).
+and b) a *Postgres Backend* service. By giving containers names, these containers can be accessed from the other container using that name, e.g., *db_container* instead of localhost. Note, that we use an off-the-shelf postgres image and a custom image for the shiny service. Our shiny DOCKERFILE recipe to build the shiny image is super minimal and not really lean and optimised, but a quick and working solution that avoids the rabbit hole of in-depth image optimization. That's another blog post - stay tuned :).
 
-In the compose file below, note the mounted *volumes* which are effectively folders on the host system that allow you to persist files beyond the lifetime of your containers. For the database container, it is used to persist the answers. For shiny it is used to persist the R code and allow for changes without rebuilding the entire image.
+In the compose file below, note the mounted *volumes* which are effectively folders on the host system that allow us to persist files beyond the lifetime of our containers. For the database container, it is used to persist the answers. For shiny it is used to persist the R code and allow for changes without rebuilding the entire image.
 
 
 In practice, a *docker-compose.yaml* file for our survey application could look like this:
@@ -294,7 +294,7 @@ shinyServer(function(input, output, session) {
 
 ## Breaking Down the Components: Postgres Database
 
-For the backend, we need to *once* create a PostgreSQL database schema and table structure in order to store participants' answers. The table design will depend on our specific survey, but generally want to capture things like a unique response ID, timestamp, and columns for each survey question. Obviously, we can think of more complex designs such as separate tables for different questions types etc.
+For the backend, we need to *once* create a PostgreSQL database schema and table structure in order to store participants' answers. The table design will depend on our specific survey, but generally we want to capture things like a unique response ID, timestamp, and columns for each survey question. Obviously, we can think of more complex designs such as separate tables for different questions types etc.
 
 But let's keep the structure simple for now:
 
@@ -316,7 +316,7 @@ Even if you do not have a *psql* client installed locally, you can run:
 docker-compose exec postgres psql -U postgres -d postgres
 ```
 
-to interactively interact with the database. Copy the SQL statement above to install create a basic schema and table. Of course, we only need to do so once. After that the table is created and persisted thanks to the volume mount and we can start storing survey answers.
+to interactively interact with the database. Copy the SQL statement above to install create a basic schema and table. Of course, we only need to do so once. After the table is created and persisted thanks to the volume mount we can start storing survey answers.
 
 
 ## Ready to Start 🚀
@@ -342,6 +342,42 @@ once the client is up, simply query our table:
 ```SQL
 SELECT * FROM rseed.h4sci_demo ;
 ```
+
+## Appendix: Our Custom DOCKERFILE
+
+Though not the focus of this blog post, here's our custom DOCKERFILE for the sake of completeness (and reproducibilty):
+
+```sh
+FROM --platform=linux/amd64 rocker/shiny
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# force use of binaries
+RUN echo "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/jammy/latest'))" >> /usr/local/lib/R/etc/Rprofile.site
+
+
+# Install R packages
+# one at a time to see which ones act up / compile
+RUN R -e "install.packages('DBI')"
+RUN R -e "install.packages('RPostgres')"
+RUN R -e "install.packages('shinythemes')"
+RUN R -e "install.packages('shinyjs')"
+
+
+# Expose Shiny port
+EXPOSE 3838
+
+# Run Shiny in app mode (or use shiny-server if you install it)
+CMD ["R", "--vanilla", "-e", "shiny::runApp('/srv/shiny-server/', host='0.0.0.0', port=3838)"]
+
+
+```
+
+In principle we use an off the shelf shiny image from the rocker project which is not ideally for ARM computers such as M1 Macs and beyond. The rocker projects does not have ARM images, so we use AMD as platform in order to avoid compilation. From the point of view of our proof of concept this is minor technical detail, but for production use it would certainly be good to use an image that is optimized for the target architecture. Note also that we force the process to use R binaries when possible to avoid lengthy builds due to compilation. The CMD command in the final line is not really relevant as we overwrite the command in the compose file.
 
 
 
