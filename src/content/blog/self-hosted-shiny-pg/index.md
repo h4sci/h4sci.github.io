@@ -14,7 +14,7 @@ tags: [Survey, R, Shiny, Postgres, Docker, docker-compose]
 
 Imagine you're a chef who's perfected a complex recipe at home. It works beautifully in your kitchen with your pots, your stove, and your ingredients. But when you try to recreate it at a friend's house, nothing quite works the same way—the oven runs hot, the measurements are in different units, and you're missing that one crucial spice. This is essentially the problem developers face when moving applications between different computers and servers. Enter Docker: the solution that packages your application along with its entire "kitchen" so it works identically everywhere.
 
->"With Docker, your multi-parts application becomes a self-contained unit."
+<div class="text-4xl">"With Docker, your multi-parts application becomes a self-contained unit."</div>
 
 In this post, we'll build a simple but working survey application using R Shiny and PostgreSQL. Our real focus though is on **how Docker transforms your development workflow**. We'll see how Docker containers solve the "works on my machine" problem, how Docker Compose allows us to manage multi-container applications with ease. And we'll see why Docker is such a game changer not only for seasoned Sysadmins and DevOps gurus but what it can do for data scientists and other applied researchers.
 
@@ -34,7 +34,7 @@ In this post, we'll build a simple but working survey application using R Shiny 
 
 First, before we look at the implementation details, let's compare the traditional approach to host all these parts locally with the containerized approach. That is where we see why Docker is transformative (=containerization for our purposes).
 
->"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on your local notebook."
+<div class="text-4xl">"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on your local notebook."</div>
 
 ### Traditional Approach: Running Locally
 
