@@ -16,16 +16,16 @@ Imagine you're a chef who's perfected a complex recipe at home. It works beautif
 
 <div class="text-4xl">"With Docker, your multi-parts application becomes a self-contained unit."</div>
 
-In this post, we'll build a simple but working survey application using R Shiny and PostgreSQL. Our real focus though is on **how Docker transforms your development workflow**. We'll see how Docker containers solve the "works on my machine" problem, how Docker Compose allows us to manage multi-container applications with ease. And we'll see why Docker is such a game changer not only for seasoned Sysadmins and DevOps gurus but what it can do for data scientists and other applied researchers.
+In this post, we'll build a simple but working survey application using R Shiny and PostgreSQL. Our real focus though is on **how Docker transforms our development workflow**. We'll see how Docker containers solve the "works on my machine" problem, how Docker Compose allows us to manage multi-container applications with ease. And we'll see why Docker is such a game changer not only for seasoned Sysadmins and DevOps gurus but what it can do for data scientists and other applied researchers.
 
 
 ## Component Overview
 
-**Docker** provides a runtime environment that allows us to run instances (containers) of previously built docker images. Think of a Docker image as a snapshot containing your application and everything it needs to run—the programming language, libraries, dependencies, system tools, and configuration. Containers are isolated from your host system and from each other, yet they can communicate when you tell them to. A bit like multiple self-contained computers running on your laptop, each doing its own job.
+**Docker** provides a runtime environment that allows us to run instances (containers) of previously built docker images. Think of a Docker image as a snapshot containing our application and everything it needs to run—the programming language, libraries, dependencies, system tools, and configuration. Containers are isolated from our host system and from each other, yet they can communicate when we tell them to. A bit like multiple self-contained computers running on our laptop, each doing its own job.
 
-**Docker Compose** takes containerization a step further. While simple Docker handles individual containers, Docker Compose coordinates multiple containers as a unified application. To do this, you describe your entire application stack in a single YAML file: Which containers do you need? How do they connect? What ports do they expose? Docker Compose handles all of this. One command brings everything up -- another tears it down again.
+**Docker Compose** takes containerization a step further. While simple Docker handles individual containers, Docker Compose coordinates multiple containers as a unified application. To do this, we describe our entire application stack in a single YAML file: Which containers do we need? How do they connect? What ports do they expose? Docker Compose handles all of this. One command brings everything up -- another tears it down again.
 
-**R Shiny** is a web application framework that allows statisticians and data scientists to stay firmly within their domain when creating web based graphical user interfaces (GUIs). If you're comfortable with R, we can build interactive web applications without *needing* to learn JavaScript, HTML or CSS. This way we can leverage our existing R skills to create a data collection tool or an interactive data visualisation tool without leaving R.
+**R Shiny** is a web application framework that allows statisticians and data scientists to stay firmly within their domain when creating web based graphical user interfaces (GUIs). If we're comfortable with R, we can build interactive web applications without *needing* to learn JavaScript, HTML or CSS. This way we can leverage our existing R skills to create a data collection tool or an interactive data visualisation tool without leaving R.
 
 **PostgreSQL** is the self-proclaimed "world's most advanced open source database" when it comes to relational database management systems (RDBMS). It's robust, handles concurrent connections well, and integrates seamlessly with R.
 
@@ -34,25 +34,25 @@ In this post, we'll build a simple but working survey application using R Shiny 
 
 First, before we look at the implementation details, let's compare the traditional approach to host all these parts locally with the containerized approach. That is where we see why Docker is transformative (=containerization for our purposes).
 
-<div class="text-4xl">"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on your local notebook."</div>
+<div class="text-4xl">"The cool thing about containers is, they run virtually — pun intended — the same way on a remote server as they run on our local notebook."</div>
 
 ### Traditional Approach: Running Locally
 
-Running your R frontend locally is relatively straightforward if you're a data scientist who works with R interactively. You open RStudio, load your Shiny app script, and click "Run App." The application launches in your browser, done.
+Running our R frontend locally is relatively straightforward if we're a data scientist who works with R interactively. We open RStudio, load our Shiny app script, and click "Run App." The application launches in our browser, done.
 
 But there are challenges around the corner: 
 
-**Problem 1: Isolation.** When you run the application on your laptop, other people can't access it.
+**Problem 1: Isolation.** When we run the application on our laptop, other people can't access it.
 
-**Problem 2: PostgreSQL installation.** You could install PostgreSQL directly on your operating system. That is, download the installer, set up a database server, configure users and permissions. But PostgreSQL configuration varies across platforms Windows, macOS and Linux may all behave differently. What version are you running? What port is it using? How do you ensure your colleague's setup matches yours?
+**Problem 2: PostgreSQL installation.** We could install PostgreSQL directly on our operating system. That is, download the installer, set up a database server, configure users and permissions. But PostgreSQL configuration varies across platforms Windows, macOS and Linux may all behave differently. What version are we running? What port is it using? How do we ensure our colleague's setup matches ours?
  
-**Problem 3: Dependency management.** Your Shiny app needs specific R packages. Did you remember to document which ones? What versions? What if your colleague has a different version of R installed? 
+**Problem 3: Dependency management.** Our Shiny app needs specific R packages. Did we remember to document which ones? What versions? What if our colleague has a different version of R installed? 
  
-**Problem 4: Sharing and collaboration.** To share your application, you'd need to write extensive setup instructions: "First install R version X.X.X, then PostgreSQL 16, then run these SQL scripts, then install these R packages, then configure these environment variables..."
+**Problem 4: Sharing and collaboration.** To share our application, we'd need to write extensive setup instructions: "First install R version X.X.X, then PostgreSQL 16, then run these SQL scripts, then install these R packages, then configure these environment variables..."
 
 ### Containers to the Rescue
 
-With Docker, your multi-parts application becomes a self-contained unit. We define our entire application in a configuration file. Basically we run two services: a) an *R Shiny frontend* service
+With Docker, our multi-parts application becomes a self-contained unit. We define our entire application in a configuration file. Basically we run two services: a) an *R Shiny frontend* service
 and b) a *Postgres Backend* service. By giving containers names, these containers can be accessed from the other container using that name, e.g., *db_container* instead of localhost. Note, that we use an off-the-shelf postgres image and a custom image for the shiny service. Our shiny DOCKERFILE recipe to build the shiny image is super minimal and not really lean and optimised, but a quick and working solution that avoids the rabbit hole of in-depth image optimization. That's another blog post - stay tuned :).
 
 In the compose file below, note the mounted *volumes* which are effectively folders on the host system that allow us to persist files beyond the lifetime of our containers. For the database container, it is used to persist the answers. For shiny it is used to persist the R code and allow for changes without rebuilding the entire image.
@@ -117,7 +117,7 @@ Yet, we need an environment to make containers run on our local computer. While 
 
 ## Breaking Down the Components: R Shiny Frontend
 
-For the frontend, we create a Shiny app that presents survey questions to users. The beauty of using Shiny here is that you can design your survey, add conditional logic — all without leaving the R environment. Our shiny app consists of two files: 1) `ui.R` holding a simple user interface and 2) `server.R` containing the logic and storage functions behind the survey. For more detailed discussion of shiny see the [shiny case study in the RSE book](https://rse-book.github.io/case-studies.html#web-applications-with-r-shiny).
+For the frontend, we create a Shiny app that presents survey questions to users. The beauty of using Shiny here is that we can design our survey, add conditional logic — all without leaving the R environment. Our shiny app consists of two files: 1) `ui.R` holding a simple user interface and 2) `server.R` containing the logic and storage functions behind the survey. For more detailed discussion of shiny see the [shiny case study in the RSE book](https://rse-book.github.io/case-studies.html#web-applications-with-r-shiny).
 
 Demo survey `ui.R`:
 
@@ -336,10 +336,10 @@ docker-compose up -d
 ```
 
 Note the *-d* which allows us to run docker-compose in the background.
-Our app will be locally available in your favorite web browser at: **http://localhost:3838/**
+Our app will be locally available in our favorite web browser at: **http://localhost:3838/**
 On a 'real' remote webserver, the very same setup will work, but we will need some glue in between, so our domain is mapped to our app. But enough for one blog post – let's take a look at webservers DNS etc. another time!
 
-Ah, and you can check out our participants answers like this:
+Ah, and we can check out our participants answers like this:
 
 ```sh
 docker-compose exec postgres psql -U postgres -d postgres
@@ -395,4 +395,4 @@ This blog post experimented with using AI not to generate code (which was writte
 
 Hmm, I haven't made my mind up whether I saved time and/or energy until I reached a self-set finish line. Was it more fun? Hard to tell, too. I'll continue to work on different techniques and keep you h4sci blog readers posted.
 
-[^1]: Mac OS, you could also use [orbstack](https://orbstack.dev) or [colima](https://abiosoft.github.com/colima) to run docker if you need an alternative due to licensing or other reasons.
+[^1]: Mac OS, we could also use [orbstack](https://orbstack.dev) or [colima](https://abiosoft.github.com/colima) to run docker if we need an alternative due to licensing or other reasons.
