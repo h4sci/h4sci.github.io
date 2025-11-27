@@ -11,47 +11,60 @@ category: "SELF-HOSTED, DevOps, Tutorial"
 tags: [Survey, R, Shiny, Postgres, Docker, docker-compose, Alpine]
 ---
 
-Important Notice: This post builds directly on our earlier tutorial [From Lab to Production: an R Shiny Survey with a Database Backend](https://h4sci.github.io/blog/self-hosted-shiny-pg/). Here, we keep the same functionality but **shrink the container footprint**, by using a lighter base image, which reduces our storage.
+# Lighter Docker Images for RShiny
+
+In our previous post, we built a simple RShiny application connected to a Postgres
+database inside a Docker container. It worked well — but the base image we used,
+`rocker/shiny`, is quite heavy.
+
+> Today we’ll take the same app and build **a much slimmer version** using an
+> Alpine-based R image instead of `rocker/shiny`.
+
+Alpine containers are lightweight and intentionally minimalist, so we must install more
+dependencies ourselves. But the result is a significantly **smaller**, **clearer**, and
+**more maintainable** image.
+
+Let’s look at the differences.
+
+---
 
 ## Why Care About Image Size?
 
-When you are just getting started, using a convenient base image like
+When you're just getting started, using a convenient base image such as
 `rocker/shiny` is a great choice. It gives you:
 
 - **R + Shiny pre-installed**
-- **System libraries** that cover many common use cases
-- A quick way to get to “it runs!”
+- **System libraries** for many common packages
+- A quick path to “it just works”
 
-The trade-off is size. On a laptop with limited disk, a CI system pulling
-images frequently, or a small cloud VM, image size starts to matter:
+However, the trade-off is size. On a laptop with limited disk space, a CI system that
+pulls images frequently, or a small cloud VM, image size starts to matter:
 
-- **Slower pulls and pushes** across the network
-- **Longer cold starts** when a new machine spins up
-- **Less room** for other projects or datasets
+- **Slower pulls and pushes**
+- **Longer cold starts** when new machines spin up
+- **Less space** for other projects and datasets
 
-To make this more concrete, here are the image sizes I observed on my machine:
+Here are the image sizes on my machine:
 
 **Base images:**
+- `devxygmbh/r-alpine:4-3.21`: **138.3 MB**
+- `rocker/shiny`: **544.9 MB**
 
-- `devxygmbh/r-alpine:4-3.21`: 138.3 MB  
-- `rocker/shiny`: 544.9 MB
+**After installing all dependencies and R packages:**
+- **Base example (rocker/shiny)**: **1.68 GB**
+- **Lightweight example (Alpine-based)**: **789 MB**
 
-Once we add all required system dependencies and R packages, the final images
-for the survey app look roughly like this:
+That's not just a nice chart for presentations — it’s a practical improvement when
+you rebuild frequently or run on constrained hardware.
 
-- **Base example (heavier)**: 1.68 GB  
-- **Lightweight example (Alpine-based)**: 789 MB
+Using a lighter base image such as `r-alpine` also means:
 
-That’s not only a nice number to show in slides — it’s a practical improvement
-when you rebuild images often or run on constrained hardware.
+- **Only the dependencies you need**
+- **Better isolation and maintainability**
+- **Smaller attack surface**
 
-Amongst the benefits of using a lighter image such as `r-alpine` instead of the standard `rocker/shiny` being size related, switching to this lighter image provides the following improvements:
+> **Exercise:** Check [Docker Hub](https://hub.docker.com/) for these images to compare contents, and you will see the reason for the size differences.
 
-- less dependencies to manage
-- isolation - know what you really need to build 
-- easier to maintain due to lack of dependencies
-
-Take Home Exercise: check out on the docker image library [dockerhub](https://hub.docker.com/) what each of these above mentioned images really consists of. then you can get more insight why the difference in base image size is so high.
 
 ## How to Measure Image Size Yourself
 
@@ -62,94 +75,50 @@ After building an image:
 docker build -t myimage .
 docker images myimage
 ```
-
+ 
 Docker will show you the image in a table, including a **SIZE** column.
-This is the quickest way to compare different Dockerfile variants.
 
-If you want more detail, you can inspect the image:
+---
 
-```bash
-docker image inspect myimage --format='{{.Size}}'
-docker history myimage
-```
+## The New Dockerfile (Alpine-Based)
 
-The `docker history` view helps you see **which Dockerfile layers** contribute
-most to the final size.
+Below is the new Dockerfile using the Alpine R base image:
 
-
-## Recap: The Original Survey Setup
-
-In the [original post](https://h4sci.github.io/blog/self-hosted-shiny-pg/)
-we built a small online survey:
-
-- **Shiny frontend**: one-page survey UI written in R (`ui.R`, `server.R`)
-- **Postgres backend**: a database that stores responses in a table
-- **Docker + docker-compose**: one service for Shiny, one for Postgres,
-  tied together via a shared Docker network and named containers
-
-The Shiny container used `rocker/shiny` as its base image and mounted the app
-code via a volume. This works well as a teaching example. In this follow-up we keep the same Shiny
-app and database schema, but now, we will:
-
-- switch to a **lighter base image**, and  
-- **tidy up the app layout** to be more explicit and portable.
-
-## A Lighter Base Image with Alpine
-
-Instead of starting from `rocker/shiny`, we now use
-`devxygmbh/r-alpine:4-3.21` as the base for the Shiny container.
-This image ships R but not Shiny or Postgres-related system libraries, so we
-install exactly what we need.
-
-Here is the updated `DOCKERFILE`:
-
-```Dockerfile
-
-# before: FROM --platform=linux/amd64 rocker/shiny
+```dockerfile
+# Base image
 FROM devxygmbh/r-alpine:4-3.21
 
-# before: 
-# RUN apt-get update && apt-get install -y \
-#     libpq-dev \
-#     && rm -rf /var/lib/apt/lists/*
-
-
-# Install system dependencies
-RUN apk add --no-cache \
-      postgresql-client \
-      postgresql-libs \
-      postgresql-dev \
-      g++ \
-      make \
-      libc6-compat \
-      curl \
-      # chat want's me to install these in case system libs are lacking to build shiny
-      openssl-dev \
-      zlib-dev \
-      libuv-dev \
-
+# Install system dependencies (Alpine package manager)
+RUN apk update && apk add --no-cache \
+    libpq \
+    libxml2 \
+    libcurl \
+    libgit2 \
+    postgresql-libs \
+    && apk add --no-cache --virtual .build-deps \
+    build-base \
+    postgresql-dev \
+    libxml2-dev \
+    libcurl-dev \
+    libgit2-dev
 
 # Install R packages
-# one at a time to see which ones act up / compile
-RUN R -e "install.packages('DBI')"
-RUN R -e "install.packages('RPostgres')"
-RUN R -e "install.packages('shinythemes')"
-RUN R -e "install.packages('shinyjs')"
+RUN R -q -e 'install.packages(c("shiny", "RPostgres", "shinythemes", "shinyjs", "DBI"), repos="https://cloud.r-project.org")'
 
+# Configure app
 WORKDIR /app
-COPY app ./app
+COPY ./app /app
 
-# Expose Shiny port
 EXPOSE 3838
 
-# Run Shiny in app mode (or use shiny-server if you install it)
-CMD ["R", "--vanilla", "-e", "shiny::runApp('/srv/app/', host='0.0.0.0', port=3838)"]
+CMD ["R", "-e", "shiny::runApp('/srv/app', host='0.0.0.0', port=3838)"]
 ```
 
-Main differences compared to the original setup:
 
-- **Different base image**: `devxygmbh/r-alpine:4-3.21` instead of `rocker/shiny`
-- **More system libraries**: since the r-alpine image is lighter, we need more installations to use postgres and shiny
+Key differences:
+
+- **Base image**: `devxygmbh/r-alpine:4-3.21` instead of `rocker/shiny`
+- **Explicit system libraries**: since the Alpine image is lighter, we need more installations to use postgres and shiny
 - The Shiny app is placed in a dedicated `/app` directory inside the image, more about the new project structure later.
 
 ## Updating `docker-compose.yaml` for the Lightweight Image
@@ -245,7 +214,45 @@ containers are **smaller and more explicit** in their dependencies.
 
 ## Platform Discussion
 
-Discussion about using different platform builds, i.e. for mac: amd64 vs arm64. benefits and drawbacks of using each. here we use ?
+Modern development spans multiple CPU architectures. The two common ones are:
+
+- **amd64 (Intel/AMD)** — servers, Linux machines, older Macs -> which tends to be heavier, thus slower
+
+- **arm64 (Apple Silicon)** — modern Macs (M1–M4), many cloud platforms -> is fast, builds efficiently
+
+### Why Architecture Matters
+
+Docker images must either:
+
+- be built **for the architecture you're running**, or
+
+- be built as **multi-arch** images.
+
+If an image isn't available for your machine, Docker Desktop will fall back to CPU
+emulation using qemu, which works but is slower.
+
+### Rocker vs Alpine: Platform Support
+
+`rocker/shiny`:
+
+- Official build targets amd64
+
+- No native arm64 builds
+
+- On Apple Silicon → runs via emulation → slower builds and slower runtime
+
+- Larger, heavier images
+
+Alpine-based R images (`devxygmbh/r-alpine`):
+
+- Typically provide amd64 + arm64 images
+
+- Faster native performance on Apple Silicon
+
+- Smaller and easier to rebuild locally
+
+One of the hidden advantages of going lightweight is that you automatically gain
+better architecture compatibility.
 
 
 If you want to see this Example in action, visit the [github.com/h4sci/h4sci-poll](https://github.com/h4sci/h4sci-poll) directory!
