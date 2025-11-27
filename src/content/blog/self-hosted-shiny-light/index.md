@@ -4,7 +4,7 @@ author: "Minna Heim & Matthias Bannert"
 toc: false
 draft: false
 snippet: "We revisit our Shiny + Postgres survey from a previous post and show how to keep the exact same functionality while cutting image size in half. By switching to a lighter Alpine-based R image, making dependencies explicit and tidying the project layout, we turn a teaching prototype into a leaner, more portable setup that is friendlier to laptops, CI systems and small servers."
-cover: ./shiny-survey.png
+cover: ./shiny-survey-lighter.png
 coverAlt: "R Shiny Frontend of an online survey"
 publishDate: "2025-11-26"
 category: "SELF-HOSTED, DevOps, Tutorial"
