@@ -11,11 +11,7 @@ category: "SELF-HOSTED, DevOps, Tutorial"
 tags: [Survey, R, Shiny, Postgres, Docker, docker-compose, Alpine]
 ---
 
-Important Notice: This post builds directly on our earlier tutorial [From Lab to Production: an R Shiny Survey with a Database Backend](https://h4sci.github.io/blog/self-hosted-shiny-pg/). There, we focused on getting a Shiny + Postgres survey running reliably with Docker and `docker-compose`. Here, we keep the functionality but **shrink the container footprint** and clean up the project layout.
-
-Put differently: in the first post we made it work, in this one we make it
-**lighter and tidier**.
-
+Important Notice: This post builds directly on our earlier tutorial [From Lab to Production: an R Shiny Survey with a Database Backend](https://h4sci.github.io/blog/self-hosted-shiny-pg/). Here, we keep the same functionality but **shrink the container footprint**, by using a lighter base image, which reduces our storage.
 
 ## Why Care About Image Size?
 
@@ -49,6 +45,13 @@ for the survey app look roughly like this:
 That’s not only a nice number to show in slides — it’s a practical improvement
 when you rebuild images often or run on constrained hardware.
 
+Amongst the benefits of using a lighter image such as `r-alpine` instead of the standard `rocker/shiny` being size related, switching to this lighter image provides the following improvements:
+
+- less dependencies to manage
+- isolation - know what you really need to build 
+- easier to maintain due to lack of dependencies
+
+Take Home Exercise: check out on the docker image library [dockerhub](https://hub.docker.com/) what each of these above mentioned images really consists of. then you can get more insight why the difference in base image size is so high.
 
 ## How to Measure Image Size Yourself
 
@@ -223,7 +226,7 @@ in the original post.
 
 ## Running the Lightweight Version
 
-With everything in place:
+With the assumption, that you have followed the instructions of the previous blog post & have gotten it to run, all you have to do is:
 
 1. Start the full stack:
 
@@ -235,46 +238,14 @@ With everything in place:
 
    - Shiny app: `http://localhost:3838`
 
-3. Initialise the database schema (only needed once - you probably did this if you followed the previous blogpost):
-
-   ```bash
-   docker-compose exec postgres psql -U postgres -d postgres
-   ```
-
-   Then, inside `psql`:
-
-   ```sql
-   CREATE SCHEMA rseed;
-
-   CREATE TABLE rseed.h4sci_demo(
-     id text,
-     free_text text,
-     demo_slider int,
-     survey_year int,
-     PRIMARY KEY (id)
-   );
-   ```
 
 From here on your survey behaves exactly as in the original tutorial, only the
 containers are **smaller and more explicit** in their dependencies.
 
 
-## Summary and Outlook
+## Platform Discussion
 
-This post took the Shiny + Postgres survey from the original
-[`h4sci` blog post](https://h4sci.github.io/blog/self-hosted-shiny-pg/)
-and showed how to:
+Discussion about using different platform builds, i.e. for mac: amd64 vs arm64. benefits and drawbacks of using each. here we use ?
 
-- switch to a **lighter base image** (`devxygmbh/r-alpine:4-3.21`)
-- keep functionality identical while reducing the final image size
-- organise the project into a clear, reproducible layout
 
-If you are teaching containerisation, this pair of posts works nicely:
-first show the “just make it run” version, then return to it and discuss
-trade-offs around base images, image size, and explicit dependencies.
-
-There are many more directions to explore — multi-stage builds, CI pipelines,
-or moving from `docker-compose` to Kubernetes — but those are stories for
-another time.
-
-Moreover, if you want to see this Example in action, visit the [github.com/h4sci/h4sci-poll](https://github.com/h4sci/h4sci-poll) directory
+If you want to see this Example in action, visit the [github.com/h4sci/h4sci-poll](https://github.com/h4sci/h4sci-poll) directory!
