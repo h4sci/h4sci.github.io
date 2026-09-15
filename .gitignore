@@ -3,6 +3,8 @@ dist/
 .output/
 .astro/
 
+promo.md
+
 # dependencies
 node_modules/
 
