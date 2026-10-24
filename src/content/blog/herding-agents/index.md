@@ -31,7 +31,7 @@ Just in case you're feeling historian vibes.
 
 ## Step 2 — Herdr: a multiplexer that also speaks "agent"
 
-[Herdr](https://herdr.io/) is such a terminal multiplexer. All the usual stuff — panes, tabs, workspaces, keybindings — is there, and for the standard mechanics the [herdr docs](https://herdr.io/) are the right place to start.
+[Herdr](https://herdr.dev/) is such a terminal multiplexer. All the usual stuff — panes, tabs, workspaces, keybindings — is there, and for the standard mechanics the [herdr docs](https://herdr.dev/docs/) are the right place to start.
 
 What makes herdr different is that it treats *coding agents* (Claude Code, opencode, and friends) as first-class citizens. Where tmux sees "a shell with some stuff happening in it," herdr sees "an agent named `rust-reviewer`, currently working, in a specific state Herdr can report on in JSON." That one difference turns out to **matter a lot when you want to script them**.
 
